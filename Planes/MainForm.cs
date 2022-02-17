@@ -41,7 +41,7 @@ namespace Planes
         private void Form1_Load(object sender, EventArgs e)
         {
             mainpage = this;
-
+            KeyPreview = true;
             HomeUC homepage = new HomeUC();
             homepage.Dock = DockStyle.Fill;
             panelcontainer.Controls.Add(homepage);

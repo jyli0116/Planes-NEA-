@@ -10,6 +10,8 @@ namespace Planes
 {
     public partial class noPlayersUC : UserControl
     {
+
+
         public noPlayersUC()
         {
             InitializeComponent();

@@ -31,6 +31,8 @@
             this.P2backbtn = new System.Windows.Forms.Button();
             this.P2confirmbtn = new System.Windows.Forms.Button();
             this.P2titlelbl = new System.Windows.Forms.Label();
+            this.turnbtn = new System.Windows.Forms.Button();
+            this.p2currentlbl = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // P2backbtn
@@ -63,10 +65,33 @@
             this.P2titlelbl.TabIndex = 5;
             this.P2titlelbl.Text = "Player 2 Board";
             // 
+            // turnbtn
+            // 
+            this.turnbtn.Location = new System.Drawing.Point(753, 289);
+            this.turnbtn.Name = "turnbtn";
+            this.turnbtn.Size = new System.Drawing.Size(75, 23);
+            this.turnbtn.TabIndex = 6;
+            this.turnbtn.Text = "Turn";
+            this.turnbtn.UseVisualStyleBackColor = true;
+            this.turnbtn.Click += new System.EventHandler(this.turnbtn_Click);
+            // 
+            // p2currentlbl
+            // 
+            this.p2currentlbl.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.p2currentlbl.AutoSize = true;
+            this.p2currentlbl.Location = new System.Drawing.Point(326, 161);
+            this.p2currentlbl.Name = "p2currentlbl";
+            this.p2currentlbl.Size = new System.Drawing.Size(136, 15);
+            this.p2currentlbl.TabIndex = 7;
+            this.p2currentlbl.Text = "Player 2 Placing Planes...";
+            this.p2currentlbl.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // setP2UC
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.p2currentlbl);
+            this.Controls.Add(this.turnbtn);
             this.Controls.Add(this.P2titlelbl);
             this.Controls.Add(this.P2confirmbtn);
             this.Controls.Add(this.P2backbtn);
@@ -83,5 +108,7 @@
         private System.Windows.Forms.Button P2backbtn;
         private System.Windows.Forms.Button P2confirmbtn;
         private System.Windows.Forms.Label P2titlelbl;
+        private System.Windows.Forms.Button turnbtn;
+        private System.Windows.Forms.Label p2currentlbl;
     }
 }

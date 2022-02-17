@@ -21,11 +21,17 @@ namespace Planes
         const int tileHeight = gridHeight / rows;
         const int gridTop = 200;
         const int gridLeft = 300;
+        Grid p2planegrid;
+
 
         public gamepageUC()
         {
             InitializeComponent();
+            setP2UC setP2 = setP2UC.setP2screen;
+            p2planegrid = setP2.p2planegrid;
         }
+
+        
 
         private void CreateGrids(int rows, int cols, int tileWidth, int tileHeight, int gridTop, int gridLeft)
         {
@@ -66,6 +72,8 @@ namespace Planes
             }
 
         }
+
+        
 
         private void p1GridHover(object sender, EventArgs e)
         {

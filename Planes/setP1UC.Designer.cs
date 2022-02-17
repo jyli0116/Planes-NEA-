@@ -31,6 +31,8 @@
             this.P1backbtn = new System.Windows.Forms.Button();
             this.P1confirmbtn = new System.Windows.Forms.Button();
             this.P1titlelbl = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
+            this.p1currentlbl = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // P1backbtn
@@ -63,10 +65,33 @@
             this.P1titlelbl.TabIndex = 5;
             this.P1titlelbl.Text = "Player 1 Board";
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(753, 289);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 6;
+            this.button1.Text = "Turn";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.turnbtn_Click);
+            // 
+            // p1currentlbl
+            // 
+            this.p1currentlbl.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.p1currentlbl.AutoSize = true;
+            this.p1currentlbl.Location = new System.Drawing.Point(326, 161);
+            this.p1currentlbl.Name = "p1currentlbl";
+            this.p1currentlbl.Size = new System.Drawing.Size(136, 15);
+            this.p1currentlbl.TabIndex = 7;
+            this.p1currentlbl.Text = "Player 1 Placing Planes...";
+            this.p1currentlbl.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // setP1UC
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.p1currentlbl);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.P1titlelbl);
             this.Controls.Add(this.P1confirmbtn);
             this.Controls.Add(this.P1backbtn);
@@ -83,5 +108,7 @@
         private System.Windows.Forms.Button P1backbtn;
         private System.Windows.Forms.Button P1confirmbtn;
         private System.Windows.Forms.Label P1titlelbl;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Label p1currentlbl;
     }
 }

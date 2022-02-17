@@ -10,23 +10,30 @@ namespace Planes
 {
     public partial class difficultyUC : UserControl
     {
+        public static difficultyUC difficultyscreen;
+        public int difficultylvl;
+
         public difficultyUC()
         {
+            difficultyscreen = this;
             InitializeComponent();
         }
 
         private void easybtn_Click(object sender, EventArgs e)
         {
             singleBoard();
+            difficultylvl = 0;
         }
 
         private void mediumbtn_Click(object sender, EventArgs e)
         {
             singleBoard();
+            difficultylvl = 1;
         }
         private void hardbtn_Click(object sender, EventArgs e)
         {
             singleBoard();
+            difficultylvl = 2;
         }
 
         //subroutine to go to set p2 board

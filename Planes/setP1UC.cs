@@ -369,12 +369,6 @@ namespace Planes
             {
                 p1currentlbl.Text = "You have not yet placed 3 planes on your grid";
             }
-
-            
-
-            
-
-
         }
 
         //back button set up p1 page to no of players page

@@ -10,10 +10,12 @@ namespace Planes
 {
     public partial class noPlayersUC : UserControl
     {
-
+        public static noPlayersUC noplayersscreen;
+        public int noplayers = 0;
 
         public noPlayersUC()
         {
+            noplayersscreen = this;
             InitializeComponent();
         }
 
@@ -38,6 +40,7 @@ namespace Planes
                 MainForm.Instance.pagecontainer.Controls.Add(p1board);
             }
             MainForm.Instance.pagecontainer.Controls["setP1UC"].BringToFront();
+            noplayers = 2; 
         }
 
         private void p1btn_Click(object sender, EventArgs e)
@@ -49,6 +52,7 @@ namespace Planes
                 MainForm.Instance.pagecontainer.Controls.Add(singledifficulty);
             }
             MainForm.Instance.pagecontainer.Controls["difficultyUC"].BringToFront();
+            noplayers = 1;
         }
     }
 }

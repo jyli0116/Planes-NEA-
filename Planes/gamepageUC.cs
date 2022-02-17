@@ -10,6 +10,7 @@ namespace Planes
 {
     public partial class gamepageUC : UserControl
     {
+        //grids of buttons users interact with
         private Button[,] p1Grid;
         private Button[,] p2Grid;
         const int SQUARE_GRID_SIZE = 10;
@@ -21,13 +22,17 @@ namespace Planes
         const int tileHeight = gridHeight / rows;
         const int gridTop = 200;
         const int gridLeft = 300;
+        //the grids set up beforehand
         Grid p2planegrid;
         Grid p1planegrid;
+        //the grids that show what is displayed on the buttons
         private int[,] p1refgrid = new int[10, 10];
         private int[,] p2refgrid = new int[10, 10];
-        private int playerturn = 1;
+        private int playerturn = 0;
         private int p1headno = 0;
         private int p2headno = 0;
+        private int nousers;
+        private int difficulty;
 
 
         public gamepageUC()
@@ -35,8 +40,55 @@ namespace Planes
             InitializeComponent();
             setP2UC setP2 = setP2UC.setP2screen;
             p2planegrid = setP2.p2planegrid;
-            setP1UC setP1 = setP1UC.setP1screen;
-            p1planegrid = setP1.p1planegrid;
+            noPlayersUC noplayers = noPlayersUC.noplayersscreen;
+            nousers = noplayers.noplayers;
+            if (nousers == 2)
+            {
+                setP1UC setP1 = setP1UC.setP1screen;
+                p1planegrid = setP1.p1planegrid;
+            }
+            else
+            {
+                p1planegrid = new Grid();
+                p1planegrid.CreateGrid();
+                difficultyUC difficultyscreen = difficultyUC.difficultyscreen;
+                difficulty = difficultyscreen.difficultylvl;
+                statuslbl.Text = Convert.ToString(difficulty);
+            }
+        }
+
+        private void GamePlay()
+        {
+            if (nousers == 1 && playerturn == 1)
+            {
+                if (difficulty == 0)
+                {
+                    EasyMove();
+                }
+                else if (difficulty == 1)
+                {
+                    MediumMove();
+                }
+                else if (difficulty == 2)
+                {
+                    HardMove();
+                }
+            }
+        }
+
+        private void EasyMove()
+        {
+
+        }
+
+        private void MediumMove()
+        {
+
+        }
+
+        private void HardMove()
+        {
+
         }
 
         private bool CheckWin(int planeheads)
@@ -51,13 +103,37 @@ namespace Planes
             }
         }
 
-        private void squarecolours()
+        private void GridColour()
         {
             for (int i = 0; i < 10; i++)
             {
                 for (int j = 0; j < 10; j++)
                 {
-                    //for ech no change col
+                    if (p2planegrid.playgrid[i, j] == 2)
+                    {
+                        p2Grid[i, j].BackColor = Color.Red;
+                    }
+                    else if (p2planegrid.playgrid[i, j] == 1)
+                    {
+                        p2Grid[i, j].BackColor = Color.Blue;
+                    }
+                    else if (p2planegrid.playgrid[i, j] == -1)
+                    {
+                        p2Grid[i, j].BackColor = Color.DarkGray;
+                    }
+
+                    if (p1planegrid.playgrid[i, j] == 2)
+                    {
+                        p1Grid[i, j].BackColor = Color.Red;
+                    }
+                    else if (p1planegrid.playgrid[i, j] == 1)
+                    {
+                        p1Grid[i, j].BackColor = Color.Blue;
+                    }
+                    else if (p1planegrid.playgrid[i, j] == -1)
+                    {
+                        p1Grid[i, j].BackColor = Color.DarkGray;
+                    }
                 }
             }
         }
@@ -112,7 +188,7 @@ namespace Planes
         
         private void p1GridClick(object sender, EventArgs e)
         {
-            if (playerturn == 1)
+            if (playerturn == 1 && nousers == 2)
             {
                 string gridindex = Convert.ToString((sender as Button).Tag);
                 int r = Convert.ToInt32(gridindex.Substring(0, 1));

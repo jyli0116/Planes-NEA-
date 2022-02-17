@@ -72,28 +72,28 @@ namespace Planes
         {
             if (orientation == 0)
             {
-                if (setupGrid[r + 1, c - 2].Enabled == true && setupGrid[r + 1, c - 1].Enabled == true && setupGrid[r + 1, c].Enabled == true && setupGrid[r + 1, c + 1].Enabled == true && setupGrid[r + 1, c + 2].Enabled == true && setupGrid[r + 2, c].Enabled == true && setupGrid[r + 3, c - 1].Enabled == true && setupGrid[r + 3, c].Enabled == true && setupGrid[r + 3, c + 1].Enabled == true)
+                if (p1planegrid.playgrid[r + 1, c - 2] == 0 && p1planegrid.playgrid[r + 1, c - 1] == 0 && p1planegrid.playgrid[r + 1, c] == 0 && p1planegrid.playgrid[r + 1, c + 1] == 0 && p1planegrid.playgrid[r + 1, c + 2] == 0 && p1planegrid.playgrid[r + 2, c] == 0 && p1planegrid.playgrid[r + 3, c - 1] == 0 && p1planegrid.playgrid[r + 3, c] == 0 && p1planegrid.playgrid[r + 3, c + 1] == 0)
                 {
                     return true;
                 }
             }
             else if (orientation == 1)
             {
-                if (setupGrid[r + 2, c + 1].Enabled == true && setupGrid[r + 1, c + 1].Enabled == true && setupGrid[r, c + 1].Enabled == true && setupGrid[r - 1, c + 1].Enabled == true && setupGrid[r - 2, c + 1].Enabled == true && setupGrid[r, c + 2].Enabled == true && setupGrid[r, c + 3].Enabled == true && setupGrid[r - 1, c + 3].Enabled == true && setupGrid[r + 1, c + 3].Enabled == true)
+                if (p1planegrid.playgrid[r + 2, c + 1] == 0 && p1planegrid.playgrid[r + 1, c + 1] == 0 && p1planegrid.playgrid[r, c + 1] == 0 && p1planegrid.playgrid[r - 1, c + 1] == 0 && p1planegrid.playgrid[r - 2, c + 1] == 0 && p1planegrid.playgrid[r, c + 2] == 0 && p1planegrid.playgrid[r, c + 3] == 0 && p1planegrid.playgrid[r - 1, c + 3] == 0 && p1planegrid.playgrid[r + 1, c + 3] == 0)
                 {
                     return true;
                 }
             }
             else if (orientation == 2)
             {
-                if (setupGrid[r - 1, c + 2].Enabled == true && setupGrid[r - 1, c + 1].Enabled == true && setupGrid[r - 1, c].Enabled == true && setupGrid[r - 1, c - 1].Enabled == true && setupGrid[r - 1, c - 2].Enabled == true && setupGrid[r - 2, c].Enabled == true && setupGrid[r - 3, c + 1].Enabled == true && setupGrid[r - 3, c].Enabled == true && setupGrid[r - 3, c - 1].Enabled == true)
+                if (p1planegrid.playgrid[r - 1, c + 2] == 0 && p1planegrid.playgrid[r - 1, c + 1] == 0 && p1planegrid.playgrid[r - 1, c] == 0 && p1planegrid.playgrid[r - 1, c - 1] == 0 && p1planegrid.playgrid[r - 1, c - 2] == 0 && p1planegrid.playgrid[r - 2, c] == 0 && p1planegrid.playgrid[r - 3, c + 1] == 0 && p1planegrid.playgrid[r - 3, c] == 0 && p1planegrid.playgrid[r - 3, c - 1] == 0)
                 {
                     return true;
                 }
             }
             else
             {
-                if (setupGrid[r - 2, c - 1].Enabled == true && setupGrid[r - 1, c - 1].Enabled == true && setupGrid[r, c - 1].Enabled == true && setupGrid[r + 1, c - 1].Enabled == true && setupGrid[r + 2, c - 1].Enabled == true && setupGrid[r, c - 2].Enabled == true && setupGrid[r - 1, c - 3].Enabled == true && setupGrid[r, c - 3].Enabled == true && setupGrid[r + 1, c - 3].Enabled == true)
+                if (p1planegrid.playgrid[r - 2, c - 1] == 0 && p1planegrid.playgrid[r - 1, c - 1] == 0 && p1planegrid.playgrid[r, c - 1] == 0 && p1planegrid.playgrid[r + 1, c - 1] == 0 && p1planegrid.playgrid[r + 2, c - 1] == 0 && p1planegrid.playgrid[r, c - 2] == 0 && p1planegrid.playgrid[r - 1, c - 3] == 0 && p1planegrid.playgrid[r, c - 3] == 0 && p1planegrid.playgrid[r + 1, c - 3] == 0)
                 {
                     return true;
                 }
@@ -101,10 +101,26 @@ namespace Planes
             return false;
         }
 
+        private void GridColour()
+        {
+            for (int i = 0; i < 10; i++)
+            {
+                for (int j = 0; j < 10; j++)
+                {
+                    if (p1planegrid.playgrid[i, j] == 2)
+                    {
+                        setupGrid[i, j].BackColor = Color.Red;
+                    }
+                    else if (p1planegrid.playgrid[i, j] == 1)
+                    {
+                        setupGrid[i, j].BackColor = Color.Blue;
+                    }
+                }
+            }
+        }
+
         private void setupGridClick(object sender, EventArgs e)
         {
-
-
             if (inrange == true)
             {
                 planehover = Convert.ToString((sender as Button).Tag);
@@ -116,224 +132,187 @@ namespace Planes
                 if (orientation == 0)
                 {
                     p1planegrid.playgrid[r, c] = 2;
-                    setupGrid[r, c].Enabled = false;
                     p1planegrid.playgrid[r + 1, c - 2] = 1;
-                    setupGrid[r + 1, c - 2].Enabled = false;
                     p1planegrid.playgrid[r + 1, c - 1] = 1;
-                    setupGrid[r + 1, c - 1].Enabled = false;
                     p1planegrid.playgrid[r + 1, c] = 1;
-                    setupGrid[r + 1, c].Enabled = false;
                     p1planegrid.playgrid[r + 1, c + 1] = 1;
-                    setupGrid[r + 1, c + 1].Enabled = false;
                     p1planegrid.playgrid[r + 1, c + 2] = 1;
-                    setupGrid[r + 1, c + 2].Enabled = false;
                     p1planegrid.playgrid[r + 2, c] = 1;
-                    setupGrid[r + 2, c].Enabled = false;
                     p1planegrid.playgrid[r + 3, c - 1] = 1;
-                    setupGrid[r + 3, c - 1].Enabled = false;
                     p1planegrid.playgrid[r + 3, c] = 1;
-                    setupGrid[r + 3, c].Enabled = false;
                     p1planegrid.playgrid[r + 3, c + 1] = 1;
-                    setupGrid[r + 3, c + 1].Enabled = false;
-
-
                 }
                 else if (orientation == 1)
                 {
                     p1planegrid.playgrid[r, c] = 2;
-                    setupGrid[r, c].Enabled = false;
                     p1planegrid.playgrid[r + 2, c + 1] = 1;
-                    setupGrid[r + 2, c + 1].Enabled = false;
                     p1planegrid.playgrid[r + 1, c + 1] = 1;
-                    setupGrid[r + 1, c + 1].Enabled = false;
                     p1planegrid.playgrid[r, c + 1] = 1;
-                    setupGrid[r, c + 1].Enabled = false;
                     p1planegrid.playgrid[r - 1, c + 1] = 1;
-                    setupGrid[r - 1, c + 1].Enabled = false;
                     p1planegrid.playgrid[r - 2, c + 1] = 1;
-                    setupGrid[r - 2, c + 1].Enabled = false;
                     p1planegrid.playgrid[r, c + 2] = 1;
-                    setupGrid[r, c + 2].Enabled = false;
                     p1planegrid.playgrid[r, c + 3] = 1;
-                    setupGrid[r, c + 3].Enabled = false;
                     p1planegrid.playgrid[r - 1, c + 3] = 1;
-                    setupGrid[r - 1, c + 3].Enabled = false;
                     p1planegrid.playgrid[r + 1, c + 3] = 1;
-                    setupGrid[r + 1, c + 3].Enabled = false;
                 }
                 else if (orientation == 2)
                 {
                     p1planegrid.playgrid[r, c] = 2;
-                    setupGrid[r, c].Enabled = false;
                     p1planegrid.playgrid[r - 1, c + 2] = 1;
-                    setupGrid[r - 1, c + 2].Enabled = false;
                     p1planegrid.playgrid[r - 1, c + 1] = 1;
-                    setupGrid[r - 1, c + 1].Enabled = false;
                     p1planegrid.playgrid[r - 1, c] = 1;
-                    setupGrid[r - 1, c].Enabled = false;
                     p1planegrid.playgrid[r - 1, c - 1] = 1;
-                    setupGrid[r - 1, c - 1].Enabled = false;
                     p1planegrid.playgrid[r - 1, c - 2] = 1;
-                    setupGrid[r - 1, c - 2].Enabled = false;
                     p1planegrid.playgrid[r - 2, c] = 1;
-                    setupGrid[r - 2, c].Enabled = false;
                     p1planegrid.playgrid[r - 3, c + 1] = 1;
-                    setupGrid[r - 3, c + 1].Enabled = false;
                     p1planegrid.playgrid[r - 3, c] = 1;
-                    setupGrid[r - 3, c].Enabled = false;
                     p1planegrid.playgrid[r - 3, c - 1] = 1;
-                    setupGrid[r - 3, c - 1].Enabled = false;
-
                 }
                 else
                 {
                     p1planegrid.playgrid[r, c] = 2;
-                    setupGrid[r, c].Enabled = false;
                     p1planegrid.playgrid[r - 2, c - 1] = 1;
-                    setupGrid[r - 2, c - 1].Enabled = false;
                     p1planegrid.playgrid[r - 1, c - 1] = 1;
-                    setupGrid[r - 1, c - 1].Enabled = false;
                     p1planegrid.playgrid[r, c - 1] = 1;
-                    setupGrid[r, c - 1].Enabled = false;
                     p1planegrid.playgrid[r + 1, c - 1] = 1;
-                    setupGrid[r + 1, c - 1].Enabled = false;
                     p1planegrid.playgrid[r + 2, c - 1] = 1;
-                    setupGrid[r + 2, c - 1].Enabled = false;
                     p1planegrid.playgrid[r, c - 2] = 1;
-                    setupGrid[r, c - 2].Enabled = false;
                     p1planegrid.playgrid[r - 1, c - 3] = 1;
-                    setupGrid[r - 1, c - 3].Enabled = false;
                     p1planegrid.playgrid[r, c - 3] = 1;
-                    setupGrid[r, c - 3].Enabled = false;
                     p1planegrid.playgrid[r + 1, c - 3] = 1;
-                    setupGrid[r + 1, c - 3].Enabled = false;
                 }
+                GridColour();
+                inrange = false;
             }
 
         }
 
         private void setupGridHover(object sender, EventArgs e)
         {
-            if (planescount < 3)
+            planehover = Convert.ToString((sender as Button).Tag);
+            r = Convert.ToInt32(planehover.Substring(0, 1));
+            c = Convert.ToInt32(planehover.Substring(2, 1));
+
+            if(p1planegrid.playgrid[r, c] == 0)
             {
-                if (((Button)sender).Enabled == true)
+                if (planescount < 3)
                 {
-                    planehover = Convert.ToString((sender as Button).Tag);
-                    r = Convert.ToInt32(planehover.Substring(0, 1));
-                    c = Convert.ToInt32(planehover.Substring(2, 1));
+                    if (((Button)sender).Enabled == true)
+                    {
 
-
-                    //which is it is possible to put a plane in that position with that orientation
-                    if (orientation == 0)
-                    {
-                        if (c + 2 <= 9 && c - 2 >= 0 && r + 3 <= 9)
-                        {
-
-                            inrange = planeenabled(r, c);
-                        }
-                        else
-                        {
-                            inrange = false;
-                        }
-                    }
-                    else if (orientation == 1)
-                    {
-                        if (r + 2 <= 9 && r - 2 >= 0 && c + 3 <= 9)
-                        {
-                            inrange = planeenabled(r, c);
-                        }
-                        else
-                        {
-                            inrange = false;
-                        }
-                    }
-                    else if (orientation == 2)
-                    {
-                        if (c + 2 <= 9 && c - 2 >= 0 && r - 3 >= 0)
-                        {
-                            inrange = planeenabled(r, c);
-                        }
-                        else
-                        {
-                            inrange = false;
-                        }
-                    }
-                    else
-                    {
-                        if (r + 2 <= 9 && r - 2 >= 0 && c - 3 >= 0)
-                        {
-                            inrange = planeenabled(r, c);
-                        }
-                        else
-                        {
-                            inrange = false;
-                        }
-                    }
-
-                    //if its not in range, then cannot click, else, the plane is displayed
-                    if (inrange == false)
-                    {
-                        ((Button)sender).BackColor = Color.DarkGray;
-                        //((Button)sender).Enabled = false;
-                    }
-                    else
-                    {
+                        //which is it is possible to put a plane in that position with that orientation
                         if (orientation == 0)
                         {
-                            setupGrid[r, c].BackColor = Color.Red;
-                            setupGrid[r + 1, c - 2].BackColor = Color.Blue;
-                            setupGrid[r + 1, c - 1].BackColor = Color.Blue;
-                            setupGrid[r + 1, c].BackColor = Color.Blue;
-                            setupGrid[r + 1, c + 1].BackColor = Color.Blue;
-                            setupGrid[r + 1, c + 2].BackColor = Color.Blue;
-                            setupGrid[r + 2, c].BackColor = Color.Blue;
-                            setupGrid[r + 3, c - 1].BackColor = Color.Blue;
-                            setupGrid[r + 3, c].BackColor = Color.Blue;
-                            setupGrid[r + 3, c + 1].BackColor = Color.Blue;
+                            if (c + 2 <= 9 && c - 2 >= 0 && r + 3 <= 9)
+                            {
+
+                                inrange = planeenabled(r, c);
+                            }
+                            else
+                            {
+                                inrange = false;
+                            }
                         }
                         else if (orientation == 1)
                         {
-                            setupGrid[r, c].BackColor = Color.Red;
-                            setupGrid[r + 2, c + 1].BackColor = Color.Blue;
-                            setupGrid[r + 1, c + 1].BackColor = Color.Blue;
-                            setupGrid[r, c + 1].BackColor = Color.Blue;
-                            setupGrid[r - 1, c + 1].BackColor = Color.Blue;
-                            setupGrid[r - 2, c + 1].BackColor = Color.Blue;
-                            setupGrid[r, c + 2].BackColor = Color.Blue;
-                            setupGrid[r, c + 3].BackColor = Color.Blue;
-                            setupGrid[r - 1, c + 3].BackColor = Color.Blue;
-                            setupGrid[r + 1, c + 3].BackColor = Color.Blue;
-
+                            if (r + 2 <= 9 && r - 2 >= 0 && c + 3 <= 9)
+                            {
+                                inrange = planeenabled(r, c);
+                            }
+                            else
+                            {
+                                inrange = false;
+                            }
                         }
                         else if (orientation == 2)
                         {
-                            setupGrid[r, c].BackColor = Color.Red;
-                            setupGrid[r - 1, c + 2].BackColor = Color.Blue;
-                            setupGrid[r - 1, c + 1].BackColor = Color.Blue;
-                            setupGrid[r - 1, c].BackColor = Color.Blue;
-                            setupGrid[r - 1, c - 1].BackColor = Color.Blue;
-                            setupGrid[r - 1, c - 2].BackColor = Color.Blue;
-                            setupGrid[r - 2, c].BackColor = Color.Blue;
-                            setupGrid[r - 3, c + 1].BackColor = Color.Blue;
-                            setupGrid[r - 3, c].BackColor = Color.Blue;
-                            setupGrid[r - 3, c - 1].BackColor = Color.Blue;
+                            if (c + 2 <= 9 && c - 2 >= 0 && r - 3 >= 0)
+                            {
+                                inrange = planeenabled(r, c);
+                            }
+                            else
+                            {
+                                inrange = false;
+                            }
                         }
                         else
                         {
-                            setupGrid[r, c].BackColor = Color.Red;
-                            setupGrid[r - 2, c - 1].BackColor = Color.Blue;
-                            setupGrid[r - 1, c - 1].BackColor = Color.Blue;
-                            setupGrid[r, c - 1].BackColor = Color.Blue;
-                            setupGrid[r + 1, c - 1].BackColor = Color.Blue;
-                            setupGrid[r + 2, c - 1].BackColor = Color.Blue;
-                            setupGrid[r, c - 2].BackColor = Color.Blue;
-                            setupGrid[r - 1, c - 3].BackColor = Color.Blue;
-                            setupGrid[r, c - 3].BackColor = Color.Blue;
-                            setupGrid[r + 1, c - 3].BackColor = Color.Blue;
+                            if (r + 2 <= 9 && r - 2 >= 0 && c - 3 >= 0)
+                            {
+                                inrange = planeenabled(r, c);
+                            }
+                            else
+                            {
+                                inrange = false;
+                            }
+                        }
+
+                        //if its not in range, then cannot click, else, the plane is displayed
+                        if (inrange == false)
+                        {
+                            ((Button)sender).BackColor = Color.DarkGray;
+                        }
+                        else
+                        {
+                            if (orientation == 0)
+                            {
+                                setupGrid[r, c].BackColor = Color.Red;
+                                setupGrid[r + 1, c - 2].BackColor = Color.Blue;
+                                setupGrid[r + 1, c - 1].BackColor = Color.Blue;
+                                setupGrid[r + 1, c].BackColor = Color.Blue;
+                                setupGrid[r + 1, c + 1].BackColor = Color.Blue;
+                                setupGrid[r + 1, c + 2].BackColor = Color.Blue;
+                                setupGrid[r + 2, c].BackColor = Color.Blue;
+                                setupGrid[r + 3, c - 1].BackColor = Color.Blue;
+                                setupGrid[r + 3, c].BackColor = Color.Blue;
+                                setupGrid[r + 3, c + 1].BackColor = Color.Blue;
+                            }
+                            else if (orientation == 1)
+                            {
+                                setupGrid[r, c].BackColor = Color.Red;
+                                setupGrid[r + 2, c + 1].BackColor = Color.Blue;
+                                setupGrid[r + 1, c + 1].BackColor = Color.Blue;
+                                setupGrid[r, c + 1].BackColor = Color.Blue;
+                                setupGrid[r - 1, c + 1].BackColor = Color.Blue;
+                                setupGrid[r - 2, c + 1].BackColor = Color.Blue;
+                                setupGrid[r, c + 2].BackColor = Color.Blue;
+                                setupGrid[r, c + 3].BackColor = Color.Blue;
+                                setupGrid[r - 1, c + 3].BackColor = Color.Blue;
+                                setupGrid[r + 1, c + 3].BackColor = Color.Blue;
+
+                            }
+                            else if (orientation == 2)
+                            {
+                                setupGrid[r, c].BackColor = Color.Red;
+                                setupGrid[r - 1, c + 2].BackColor = Color.Blue;
+                                setupGrid[r - 1, c + 1].BackColor = Color.Blue;
+                                setupGrid[r - 1, c].BackColor = Color.Blue;
+                                setupGrid[r - 1, c - 1].BackColor = Color.Blue;
+                                setupGrid[r - 1, c - 2].BackColor = Color.Blue;
+                                setupGrid[r - 2, c].BackColor = Color.Blue;
+                                setupGrid[r - 3, c + 1].BackColor = Color.Blue;
+                                setupGrid[r - 3, c].BackColor = Color.Blue;
+                                setupGrid[r - 3, c - 1].BackColor = Color.Blue;
+                            }
+                            else
+                            {
+                                setupGrid[r, c].BackColor = Color.Red;
+                                setupGrid[r - 2, c - 1].BackColor = Color.Blue;
+                                setupGrid[r - 1, c - 1].BackColor = Color.Blue;
+                                setupGrid[r, c - 1].BackColor = Color.Blue;
+                                setupGrid[r + 1, c - 1].BackColor = Color.Blue;
+                                setupGrid[r + 2, c - 1].BackColor = Color.Blue;
+                                setupGrid[r, c - 2].BackColor = Color.Blue;
+                                setupGrid[r - 1, c - 3].BackColor = Color.Blue;
+                                setupGrid[r, c - 3].BackColor = Color.Blue;
+                                setupGrid[r + 1, c - 3].BackColor = Color.Blue;
+                            }
                         }
                     }
                 }
             }
+
+            
         }
 
         //when the mouse leaves a button, if a plane hasn't already been placed there, the button turns to normal
@@ -345,7 +324,10 @@ namespace Planes
                 {
                     for (int j = 0; j < 10; j++)
                     {
-                        setupGrid[i, j].BackColor = Color.Transparent;
+                        if (p1planegrid.playgrid[i, j] == 0)
+                        {
+                            setupGrid[i, j].BackColor = Color.Transparent;
+                        }
                     }
                 }
             ((Button)sender).Enabled = true;

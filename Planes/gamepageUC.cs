@@ -28,11 +28,12 @@ namespace Planes
         //the grids that show what is displayed on the buttons
         private int[,] p1refgrid = new int[10, 10];
         private int[,] p2refgrid = new int[10, 10];
-        private int playerturn = 0;
+        private int playerturn;
         private int p1headno = 0;
         private int p2headno = 0;
         private int nousers;
         private int difficulty;
+        Random rnd = new Random();
 
 
         public gamepageUC()
@@ -46,14 +47,15 @@ namespace Planes
             {
                 setP1UC setP1 = setP1UC.setP1screen;
                 p1planegrid = setP1.p1planegrid;
+                playerturn = 1;
             }
             else
             {
+                playerturn = 0;
                 p1planegrid = new Grid();
                 p1planegrid.CreateGrid();
                 difficultyUC difficultyscreen = difficultyUC.difficultyscreen;
                 difficulty = difficultyscreen.difficultylvl;
-                statuslbl.Text = Convert.ToString(difficulty);
             }
         }
 
@@ -109,28 +111,28 @@ namespace Planes
             {
                 for (int j = 0; j < 10; j++)
                 {
-                    if (p2planegrid.playgrid[i, j] == 2)
+                    if (p2refgrid[i, j] == 2)
                     {
                         p2Grid[i, j].BackColor = Color.Red;
                     }
-                    else if (p2planegrid.playgrid[i, j] == 1)
+                    else if (p2refgrid[i, j] == 1)
                     {
                         p2Grid[i, j].BackColor = Color.Blue;
                     }
-                    else if (p2planegrid.playgrid[i, j] == -1)
+                    else if (p2refgrid[i, j] == -1)
                     {
                         p2Grid[i, j].BackColor = Color.DarkGray;
                     }
 
-                    if (p1planegrid.playgrid[i, j] == 2)
+                    if (p1refgrid[i, j] == 2)
                     {
                         p1Grid[i, j].BackColor = Color.Red;
                     }
-                    else if (p1planegrid.playgrid[i, j] == 1)
+                    else if (p1refgrid[i, j] == 1)
                     {
                         p1Grid[i, j].BackColor = Color.Blue;
                     }
-                    else if (p1planegrid.playgrid[i, j] == -1)
+                    else if (p1refgrid[i, j] == -1)
                     {
                         p1Grid[i, j].BackColor = Color.DarkGray;
                     }
@@ -195,9 +197,27 @@ namespace Planes
                 int c = Convert.ToInt32(gridindex.Substring(2, 1));
                 if (p1refgrid[r, c] == 0)
                 {
+                    if (p1planegrid.playgrid[r, c] == 0)
+                    {
+                        p1refgrid[r, c] = -1;
+                    }
+                    else
+                    {
+                        p1refgrid[r, c] = p1planegrid.playgrid[r, c];
+                    }
+                    if (p1refgrid[r, c] == 2)
+                    {
+                        p1headno++;
+                    }
+                    GridColour();
+                    if (CheckWin(p1headno))
+                    {
+                        playerturn = 3;
+                        MessageBox.Show("Player 1 Won :)");
+                    }
 
+                    playerturn = 0;
                 }
-                playerturn = 0;
             }
 
         }
@@ -211,11 +231,36 @@ namespace Planes
                 int c = Convert.ToInt32(gridindex.Substring(2, 1));
                 if (p2refgrid[r, c] == 0)
                 {
+                    if (p2planegrid.playgrid[r, c] == 0)
+                    {
+                        p2refgrid[r, c] = -1;
+                    }
+                    else
+                    {
+                        p2refgrid[r, c] = p2planegrid.playgrid[r, c];
+                    }                    
+                    if (p2refgrid[r, c] == 2)
+                    {
+                        p2headno++;
+                    }
 
+                    GridColour();
+
+                    if (CheckWin(p2headno))
+                    {
+                        playerturn = 3;
+                        MessageBox.Show("Player 2 Won :)");
+                    }
+
+                    playerturn = 1;
+
+                    if (nousers == 1)
+                    {
+                        GamePlay();
+                    }
                 }
-                playerturn = 1;
-            }
 
+            }
         }
 
         private void p1GridHover(object sender, EventArgs e)

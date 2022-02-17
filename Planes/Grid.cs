@@ -42,70 +42,82 @@ namespace Planes
                 {
                     if (orientation == 0)
                     {
-                        if (playgrid[r + 1, c - 2] == 0 && playgrid[r + 1, c - 1] == 0 && playgrid[r + 1, c] == 0 && playgrid[r + 1, c + 1] == 0 && playgrid[r + 1, c + 2] == 0 && playgrid[r + 2, c] == 0 && playgrid[r + 3, c - 1] == 0 && playgrid[r + 3, c] == 0 && playgrid[r + 3, c + 1] == 0)
+                        if (c + 2 <= 9 && c - 2 >= 0 && r + 3 <= 9)
                         {
-                            playgrid[r, c] = 2;
-                            playgrid[r + 1, c - 2] = 1;
-                            playgrid[r + 1, c - 1] = 1;
-                            playgrid[r + 1, c] = 1;
-                            playgrid[r + 1, c + 1] = 1;
-                            playgrid[r + 1, c + 2] = 1;
-                            playgrid[r + 2, c] = 1;
-                            playgrid[r + 3, c - 1] = 1;
-                            playgrid[r + 3, c] = 1;
-                            playgrid[r + 3, c + 1] = 1;
-                            lastplane++;
+                            if (playgrid[r + 1, c - 2] == 0 && playgrid[r + 1, c - 1] == 0 && playgrid[r + 1, c] == 0 && playgrid[r + 1, c + 1] == 0 && playgrid[r + 1, c + 2] == 0 && playgrid[r + 2, c] == 0 && playgrid[r + 3, c - 1] == 0 && playgrid[r + 3, c] == 0 && playgrid[r + 3, c + 1] == 0)
+                            {
+                                playgrid[r, c] = 2;
+                                playgrid[r + 1, c - 2] = 1;
+                                playgrid[r + 1, c - 1] = 1;
+                                playgrid[r + 1, c] = 1;
+                                playgrid[r + 1, c + 1] = 1;
+                                playgrid[r + 1, c + 2] = 1;
+                                playgrid[r + 2, c] = 1;
+                                playgrid[r + 3, c - 1] = 1;
+                                playgrid[r + 3, c] = 1;
+                                playgrid[r + 3, c + 1] = 1;
+                                lastplane++;
+                            }
                         }
                     }
                     else if (orientation == 1)
                     {
-                        if (playgrid[r + 2, c + 1] == 0 && playgrid[r + 1, c + 1] == 0 && playgrid[r, c + 1] == 0 && playgrid[r - 1, c + 1] == 0 && playgrid[r - 2, c + 1] == 0 && playgrid[r, c + 2] == 0 && playgrid[r, c + 3] == 0 && playgrid[r - 1, c + 3] == 0 && playgrid[r + 1, c + 3] == 0)
+                        if (r + 2 <= 9 && r - 2 >= 0 && c + 3 <= 9)
                         {
-                            playgrid[r, c] = 2;
-                            playgrid[r + 2, c + 1] = 1;
-                            playgrid[r + 1, c + 1] = 1;
-                            playgrid[r, c + 1] = 1;
-                            playgrid[r - 1, c + 1] = 1;
-                            playgrid[r - 2, c + 1] = 1;
-                            playgrid[r, c + 2] = 1;
-                            playgrid[r, c + 3] = 1;
-                            playgrid[r - 1, c + 3] = 1;
-                            playgrid[r + 1, c + 3] = 1;
-                            lastplane++;
+                            if (playgrid[r + 2, c + 1] == 0 && playgrid[r + 1, c + 1] == 0 && playgrid[r, c + 1] == 0 && playgrid[r - 1, c + 1] == 0 && playgrid[r - 2, c + 1] == 0 && playgrid[r, c + 2] == 0 && playgrid[r, c + 3] == 0 && playgrid[r - 1, c + 3] == 0 && playgrid[r + 1, c + 3] == 0)
+                            {
+                                playgrid[r, c] = 2;
+                                playgrid[r + 2, c + 1] = 1;
+                                playgrid[r + 1, c + 1] = 1;
+                                playgrid[r, c + 1] = 1;
+                                playgrid[r - 1, c + 1] = 1;
+                                playgrid[r - 2, c + 1] = 1;
+                                playgrid[r, c + 2] = 1;
+                                playgrid[r, c + 3] = 1;
+                                playgrid[r - 1, c + 3] = 1;
+                                playgrid[r + 1, c + 3] = 1;
+                                lastplane++;
+                            }
                         }
                     }
                     else if (orientation == 2)
                     {
-                        if (playgrid[r - 1, c + 2] == 0 && playgrid[r - 1, c + 1] == 0 && playgrid[r - 1, c] == 0 && playgrid[r - 1, c - 1] == 0 && playgrid[r - 1, c - 2] == 0 && playgrid[r - 2, c] == 0 && playgrid[r - 3, c + 1] == 0 && playgrid[r - 3, c] == 0 && playgrid[r - 3, c - 1] == 0)
+                        if (c + 2 <= 9 && c - 2 >= 0 && r - 3 >= 0)
                         {
-                            playgrid[r, c] = 2;
-                            playgrid[r - 1, c + 2] = 1;
-                            playgrid[r - 1, c + 1] = 1;
-                            playgrid[r - 1, c] = 1;
-                            playgrid[r - 1, c - 1] = 1;
-                            playgrid[r - 1, c - 2] = 1;
-                            playgrid[r - 2, c] = 1;
-                            playgrid[r - 3, c + 1] = 1;
-                            playgrid[r - 3, c] = 1;
-                            playgrid[r - 3, c - 1] = 1;
-                            lastplane++;
+                            if (playgrid[r - 1, c + 2] == 0 && playgrid[r - 1, c + 1] == 0 && playgrid[r - 1, c] == 0 && playgrid[r - 1, c - 1] == 0 && playgrid[r - 1, c - 2] == 0 && playgrid[r - 2, c] == 0 && playgrid[r - 3, c + 1] == 0 && playgrid[r - 3, c] == 0 && playgrid[r - 3, c - 1] == 0)
+                            {
+                                playgrid[r, c] = 2;
+                                playgrid[r - 1, c + 2] = 1;
+                                playgrid[r - 1, c + 1] = 1;
+                                playgrid[r - 1, c] = 1;
+                                playgrid[r - 1, c - 1] = 1;
+                                playgrid[r - 1, c - 2] = 1;
+                                playgrid[r - 2, c] = 1;
+                                playgrid[r - 3, c + 1] = 1;
+                                playgrid[r - 3, c] = 1;
+                                playgrid[r - 3, c - 1] = 1;
+                                lastplane++;
+                            }
                         }
                     }
                     else
                     {
-                        if (playgrid[r - 2, c - 1] == 0 && playgrid[r - 1, c - 1] == 0 && playgrid[r, c - 1] == 0 && playgrid[r + 1, c - 1] == 0 && playgrid[r + 2, c - 1] == 0 && playgrid[r, c - 2] == 0 && playgrid[r - 1, c - 3] == 0 && playgrid[r, c - 3] == 0 && playgrid[r + 1, c - 3] == 0)
+                        if (r + 2 <= 9 && r - 2 >= 0 && c - 3 >= 0)
                         {
-                            playgrid[r, c] = 2;
-                            playgrid[r - 2, c - 1] = 1;
-                            playgrid[r - 1, c - 1] = 1;
-                            playgrid[r, c - 1] = 1;
-                            playgrid[r + 1, c - 1] = 1;
-                            playgrid[r + 2, c - 1] = 1;
-                            playgrid[r, c - 2] = 1;
-                            playgrid[r - 1, c - 3] = 1;
-                            playgrid[r, c - 3] = 1;
-                            playgrid[r + 1, c - 3] = 1;
-                            lastplane++;
+                            if (playgrid[r - 2, c - 1] == 0 && playgrid[r - 1, c - 1] == 0 && playgrid[r, c - 1] == 0 && playgrid[r + 1, c - 1] == 0 && playgrid[r + 2, c - 1] == 0 && playgrid[r, c - 2] == 0 && playgrid[r - 1, c - 3] == 0 && playgrid[r, c - 3] == 0 && playgrid[r + 1, c - 3] == 0)
+                            {
+                                playgrid[r, c] = 2;
+                                playgrid[r - 2, c - 1] = 1;
+                                playgrid[r - 1, c - 1] = 1;
+                                playgrid[r, c - 1] = 1;
+                                playgrid[r + 1, c - 1] = 1;
+                                playgrid[r + 2, c - 1] = 1;
+                                playgrid[r, c - 2] = 1;
+                                playgrid[r - 1, c - 3] = 1;
+                                playgrid[r, c - 3] = 1;
+                                playgrid[r + 1, c - 3] = 1;
+                                lastplane++;
+                            }
                         }
                     }
 

@@ -120,6 +120,7 @@ namespace Planes
 
                 if (orientation == 0)
                 {
+                    
                     p2planegrid.playgrid[r, c] = 2;
                     p2planegrid.playgrid[r + 1, c - 2] = 1;
                     p2planegrid.playgrid[r + 1, c - 1] = 1;

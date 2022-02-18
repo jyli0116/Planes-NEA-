@@ -34,26 +34,34 @@ namespace Planes
         private int nousers;
         private int difficulty;
         Random rnd = new Random();
+        private Grid simgrid = new Grid();
+        private int[,] computergrid = new int[10, 10];
+        private bool win = false;
 
 
         public gamepageUC()
         {
             InitializeComponent();
             setP2UC setP2 = setP2UC.setP2screen;
-            p2planegrid = setP2.p2planegrid;
+            p1planegrid = setP2.p2planegrid;
             noPlayersUC noplayers = noPlayersUC.noplayersscreen;
             nousers = noplayers.noplayers;
             if (nousers == 2)
             {
+                p1lbl.Text = "Player 1";
+                p2lbl.Text = "Player 2";
+                statuslbl.Text = "Player 1's Turn";
                 setP1UC setP1 = setP1UC.setP1screen;
-                p1planegrid = setP1.p1planegrid;
+                p2planegrid = setP1.p1planegrid;
                 playerturn = 1;
             }
             else
             {
+                p1lbl.Text = "Computer";
+                p2lbl.Text = "You";
                 playerturn = 0;
-                p1planegrid = new Grid();
-                p1planegrid.CreateGrid();
+                p2planegrid = new Grid();
+                p2planegrid.CreateGrid();
                 difficultyUC difficultyscreen = difficultyUC.difficultyscreen;
                 difficulty = difficultyscreen.difficultylvl;
             }
@@ -80,23 +88,254 @@ namespace Planes
 
         private void EasyMove()
         {
+            int r = 0, c = 0;
+            bool played = false;
 
+            while (played == false)
+            {
+                r = rnd.Next(10);
+                c = rnd.Next(10);
+                if (p1refgrid[r, c] == 0)
+                {
+                    played = true;
+                }
+            }
+
+            if (p1planegrid.playgrid[r, c] == 0)
+            {
+                p1refgrid[r, c] = -1;
+            }
+            else
+            {
+                p1refgrid[r, c] = p1planegrid.playgrid[r, c];
+            }
+
+            if (p1refgrid[r, c] == 2)
+            {
+                p1headno++;
+            }
+            GridColour();
+
+            if (CheckWin(p1headno))
+            {
+                playerturn = 3;
+                MessageBox.Show("Player 1 Won :)");
+
+            }
+            else
+            {
+                playerturn = 0;
+            }
         }
 
         private void MediumMove()
         {
+            int r = 0, c = 0, add = 0;
+            for (int i = 0; i < 10; i++)
+            {
+                for (int j = 0; j < 10; j++)
+                {
+                    computergrid[i, j] = 0;
+                }
+            }
+
+            int loopno = 0;
+
+            while (loopno < 10000)
+            {
+                add = 0;
+                loopno ++;
+                simgrid.CreateGrid();
+                for (int i = 0; i < 10; i++)
+                {
+                    for (int j = 0; j < 10; j++)
+                    {
+                        if (p1refgrid[i, j] == 0)
+                        {
+                            computergrid[i, j] = simgrid.playgrid[i, j];                         
+                        }
+                        else if (p1refgrid[i, j] == 1)
+                        {
+                            if (simgrid.playgrid[i, j] == 1)
+                            {
+                                add += 2;
+                            }
+                        }
+                        else if (p1refgrid[i, j] == 2)
+                        {
+                            if (simgrid.playgrid[i, j] == 2)
+                            {
+                                add += 5;
+                            }
+                        }
+                        else if (p1refgrid[i, j] == -1)
+                        {
+                            add++;
+                        }
+                    }
+                }
+
+                for (int i = 0; i < 10; i++)
+                {
+                    for (int j = 0; j < 10; j++)
+                    {
+                        if (computergrid[i, j] != 0)
+                        {
+                            computergrid[i, j] += add;
+                        }
+                    }
+                }
+
+            }
+
+            for (int i = 0; i < 10; i++)
+            {
+                for (int j = 0; j < 10; j++)
+                {
+
+                    if (simgrid.playgrid[i, j] > simgrid.playgrid[r, c] && p1refgrid[i, j] == 0)
+                    {
+                        r = i;
+                        c = j;
+                    }
+                }
+            }
+
+            if (p1planegrid.playgrid[r, c] == 0)
+            {
+                p1refgrid[r, c] = -1;
+            }
+            else
+            {
+                p1refgrid[r, c] = p1planegrid.playgrid[r, c];
+            }
+
+            if (p1refgrid[r,c] == 2)
+            {
+                p1headno++;
+            }
+            GridColour();
+
+            if (CheckWin(p1headno))
+            {
+                playerturn = 3;
+                MessageBox.Show("Player 1 Won :)");
+
+            }
+            else
+            {
+                playerturn = 0;
+            }
+
+            
 
         }
 
         private void HardMove()
         {
+            int r = 0, c = 0;
+            for (int i = 0; i < 10; i++)
+            {
+                for (int j = 0; j < 10; j++)
+                {
+                    computergrid[i, j] = 0;
+                }
+            }
 
+            int loopno = 0;
+            bool scrap = false;
+
+
+            while (loopno < 100)
+            {
+                simgrid.CreateGrid();
+                for (int i = 0; i < 10; i++)
+                {
+                    for (int j = 0; j < 10; j++)
+                    {
+                        if (p1refgrid[i, j] != 0)
+                        {
+                            if (p1refgrid[i, j] == -1)
+                            {
+                                if (simgrid.playgrid[i, j] != 0)
+                                {
+                                    scrap = true;
+                                }
+                            }
+                            else
+                            {
+                                if (p1refgrid[i, j] != simgrid.playgrid[i, j])
+                                {
+                                    scrap = true;
+                                }
+                            }
+
+                        }
+                    }
+                }
+
+
+                if (scrap == false)
+                {
+                    loopno++;
+                    for (int i = 0; i < 10; i++)
+                    {
+                        for (int j = 0; j < 10; j++)
+                        {
+                            computergrid[i, j] = simgrid.playgrid[i, j];
+                        }
+                    }
+                }
+                else
+                {
+                    scrap = false;
+                }
+            }
+
+            for (int i = 0; i < 10; i++)
+            {
+                for (int j = 0; j < 10; j++)
+                {
+                    if (computergrid[i, j] > computergrid[r, c] && p1refgrid[i, j] == 0)
+                    {
+                        r = i;
+                        c = j;
+                    }
+                }
+            }
+
+            if (p1planegrid.playgrid[r, c] == 0)
+            {
+                p1refgrid[r, c] = - 1;
+            }
+            else
+            {
+                p1refgrid[r, c] = p1planegrid.playgrid[r, c];
+            }
+
+            if (p1refgrid[r, c] == 2)
+            {
+                p1headno++;
+            }
+            GridColour();
+
+            if (CheckWin(p1headno))
+            {
+                playerturn = 3;
+                MessageBox.Show("Player 1 Won :)");
+            }
+            else
+            {
+                playerturn = 0;
+                statuslbl.Text = "Playing...";
+            }
         }
 
         private bool CheckWin(int planeheads)
         {
             if(planeheads == 3)
             {
+                win = true;
                 return true;
             }
             else
@@ -215,8 +454,13 @@ namespace Planes
                         playerturn = 3;
                         MessageBox.Show("Player 1 Won :)");
                     }
+                    else
+                    {
+                        statuslbl.Text = "Player 2's Turn";
+                        playerturn = 0;
+                    }
 
-                    playerturn = 0;
+
                 }
             }
 
@@ -250,14 +494,24 @@ namespace Planes
                     {
                         playerturn = 3;
                         MessageBox.Show("Player 2 Won :)");
+                        
                     }
 
-                    playerturn = 1;
-
-                    if (nousers == 1)
+                    if (playerturn != 3)
                     {
-                        GamePlay();
+
+                        playerturn = 1;
+
+                        if (nousers == 1)
+                        {
+                            GamePlay();
+                        }
+                        else
+                        {
+                            statuslbl.Text = "Player 1's Turn";
+                        }
                     }
+
                 }
 
             }
@@ -326,8 +580,47 @@ namespace Planes
         //allows user to return to home page from game page
         private void exitgamebtn_Click(object sender, EventArgs e)
         {
-            Form savedform = new savedform();
-            savedform.Show();
+            if (win == true)
+            {
+                for (int i = 0; i < 10; i++)
+                {
+                    for (int j = 0; j < 10; j++)
+                    {
+                        p2planegrid.playgrid[i, j] = 0;
+                    }
+                }
+                if (nousers == 2)
+                {
+
+                    for (int i = 0; i < 10; i++)
+                    {
+                        for (int j = 0; j < 10; j++)
+                        {
+                            p1planegrid.playgrid[i, j] = 0;
+                        }
+                    }
+                }
+
+                if (!MainForm.Instance.pagecontainer.Controls.ContainsKey("HomeUC"))
+                {
+                    HomeUC returnhome = new HomeUC();
+                    returnhome.Dock = DockStyle.Fill;
+                    MainForm.Instance.pagecontainer.Controls.Add(returnhome);
+                }
+                MainForm.Instance.pagecontainer.Controls["HomeUC"].BringToFront();
+                MainForm.Instance.pagecontainer.Controls.RemoveByKey("gamepageUC");
+                MainForm.Instance.pagecontainer.Controls.RemoveByKey("setP2UC");
+                if (!MainForm.Instance.pagecontainer.Controls.ContainsKey("setP1UC"))
+                {
+                    MainForm.Instance.pagecontainer.Controls.RemoveByKey("setP1UC");
+                }
+            }
+            else
+            {
+                Form savedform = new savedform();
+                savedform.Show();
+            }
+            
         }
 
         private void savegamebtn_Click(object sender, EventArgs e)

@@ -70,9 +70,10 @@ namespace Planes
             // statuslbl
             // 
             this.statuslbl.AutoSize = true;
-            this.statuslbl.Location = new System.Drawing.Point(416, 75);
+            this.statuslbl.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.statuslbl.Location = new System.Drawing.Point(404, 108);
             this.statuslbl.Name = "statuslbl";
-            this.statuslbl.Size = new System.Drawing.Size(55, 15);
+            this.statuslbl.Size = new System.Drawing.Size(70, 21);
             this.statuslbl.TabIndex = 7;
             this.statuslbl.Text = "playing...";
             // 

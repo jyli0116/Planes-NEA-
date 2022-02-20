@@ -30,7 +30,6 @@ namespace Planes
         private void InitializeComponent()
         {
             this.exitgamebtn = new System.Windows.Forms.Button();
-            this.savegamebtn = new System.Windows.Forms.Button();
             this.gametitlelbl = new System.Windows.Forms.Label();
             this.statuslbl = new System.Windows.Forms.Label();
             this.p1lbl = new System.Windows.Forms.Label();
@@ -46,16 +45,6 @@ namespace Planes
             this.exitgamebtn.Text = "Exit";
             this.exitgamebtn.UseVisualStyleBackColor = true;
             this.exitgamebtn.Click += new System.EventHandler(this.exitgamebtn_Click);
-            // 
-            // savegamebtn
-            // 
-            this.savegamebtn.Location = new System.Drawing.Point(777, 19);
-            this.savegamebtn.Name = "savegamebtn";
-            this.savegamebtn.Size = new System.Drawing.Size(105, 56);
-            this.savegamebtn.TabIndex = 5;
-            this.savegamebtn.Text = "Save";
-            this.savegamebtn.UseVisualStyleBackColor = true;
-            this.savegamebtn.Click += new System.EventHandler(this.savegamebtn_Click);
             // 
             // gametitlelbl
             // 
@@ -103,7 +92,6 @@ namespace Planes
             this.Controls.Add(this.p1lbl);
             this.Controls.Add(this.statuslbl);
             this.Controls.Add(this.gametitlelbl);
-            this.Controls.Add(this.savegamebtn);
             this.Controls.Add(this.exitgamebtn);
             this.Name = "gamepageUC";
             this.Size = new System.Drawing.Size(901, 558);
@@ -116,7 +104,6 @@ namespace Planes
         #endregion
 
         private System.Windows.Forms.Button exitgamebtn;
-        private System.Windows.Forms.Button savegamebtn;
         private System.Windows.Forms.Label gametitlelbl;
         private System.Windows.Forms.Label statuslbl;
         private System.Windows.Forms.Label p1lbl;

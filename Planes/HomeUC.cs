@@ -37,15 +37,5 @@ namespace Planes
             MainForm.Instance.pagecontainer.Controls["InstructionsUC"].BringToFront();
         }
 
-        private void resumebtn_Click(object sender, EventArgs e)
-        {
-            if(!MainForm.Instance.pagecontainer.Controls.ContainsKey("savedgameUC"))
-            {
-                savedgameUC savedgames = new savedgameUC();
-                savedgames.Dock = DockStyle.Fill;
-                MainForm.Instance.pagecontainer.Controls.Add(savedgames);
-            }
-            MainForm.Instance.pagecontainer.Controls["savedgameUC"].BringToFront();
-        }
     }
 }

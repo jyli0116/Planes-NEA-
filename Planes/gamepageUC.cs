@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -11,6 +12,7 @@ namespace Planes
     public partial class gamepageUC : UserControl
     {
         //grids of buttons users interact with
+        public static gamepageUC gamepagescreen;
         private Button[,] p1Grid;
         private Button[,] p2Grid;
         const int SQUARE_GRID_SIZE = 10;
@@ -23,24 +25,26 @@ namespace Planes
         const int gridTop = 200;
         const int gridLeft = 300;
         //the grids set up beforehand
-        Grid p2planegrid;
-        Grid p1planegrid;
+        public Grid p2planegrid;
+        public Grid p1planegrid;
         //the grids that show what is displayed on the buttons
-        private int[,] p1refgrid = new int[10, 10];
-        private int[,] p2refgrid = new int[10, 10];
-        private int playerturn;
-        private int p1headno = 0;
-        private int p2headno = 0;
-        private int nousers;
-        private int difficulty;
+        public int[,] p1refgrid = new int[10, 10];
+        public int[,] p2refgrid = new int[10, 10];
+        public int playerturn;
+        public int p1headno = 0;
+        public int p2headno = 0;
+        public int nousers;
+        public int difficulty;
         Random rnd = new Random();
         private Grid simgrid = new Grid();
         private int[,] computergrid = new int[10, 10];
         private bool win = false;
+        private Button showwin;
 
 
         public gamepageUC()
         {
+            gamepagescreen = this;
             InitializeComponent();
             setP2UC setP2 = setP2UC.setP2screen;
             p1planegrid = setP2.p2planegrid;
@@ -65,6 +69,7 @@ namespace Planes
                 difficultyUC difficultyscreen = difficultyUC.difficultyscreen;
                 difficulty = difficultyscreen.difficultylvl;
             }
+
         }
 
         private void GamePlay()
@@ -120,7 +125,7 @@ namespace Planes
             {
                 playerturn = 3;
                 MessageBox.Show("Player 1 Won :)");
-
+                ShowWinBtn();
             }
             else
             {
@@ -220,7 +225,7 @@ namespace Planes
             {
                 playerturn = 3;
                 MessageBox.Show("Player 1 Won :)");
-
+                ShowWinBtn();
             }
             else
             {
@@ -246,7 +251,7 @@ namespace Planes
             bool scrap = false;
 
 
-            while (loopno < 100)
+            while (loopno < 50)
             {
                 simgrid.CreateGrid();
                 for (int i = 0; i < 10; i++)
@@ -323,6 +328,7 @@ namespace Planes
             {
                 playerturn = 3;
                 MessageBox.Show("Player 1 Won :)");
+                ShowWinBtn();
             }
             else
             {
@@ -453,6 +459,7 @@ namespace Planes
                     {
                         playerturn = 3;
                         MessageBox.Show("Player 1 Won :)");
+                        ShowWinBtn();
                     }
                     else
                     {
@@ -487,14 +494,13 @@ namespace Planes
                     {
                         p2headno++;
                     }
-
                     GridColour();
 
                     if (CheckWin(p2headno))
                     {
                         playerturn = 3;
                         MessageBox.Show("Player 2 Won :)");
-                        
+                        ShowWinBtn();
                     }
 
                     if (playerturn != 3)
@@ -587,9 +593,10 @@ namespace Planes
                     for (int j = 0; j < 10; j++)
                     {
                         p2planegrid.playgrid[i, j] = 0;
+                        p1planegrid.playgrid[i, j] = 0;
                     }
                 }
-                if (nousers == 2)
+                /*if (nousers == 2)
                 {
 
                     for (int i = 0; i < 10; i++)
@@ -599,8 +606,7 @@ namespace Planes
                             p1planegrid.playgrid[i, j] = 0;
                         }
                     }
-                }
-
+                }*/
                 if (!MainForm.Instance.pagecontainer.Controls.ContainsKey("HomeUC"))
                 {
                     HomeUC returnhome = new HomeUC();
@@ -614,18 +620,33 @@ namespace Planes
                 {
                     MainForm.Instance.pagecontainer.Controls.RemoveByKey("setP1UC");
                 }
+
             }
             else
             {
-                Form savedform = new savedform();
-                savedform.Show();
+                Form exitform = new ExitForm();
+                exitform.Show();
             }
             
         }
 
-        private void savegamebtn_Click(object sender, EventArgs e)
+        private void ShowWinBtn()
         {
-            //save game ?
+            showwin = new Button()
+            {
+                Size = new Size(150, 50),
+                Location = new Point(700, 25),
+                Font = new Font("Segoe UI", 9),
+                Text = "Show Grid"
+            };
+            showwin.MouseClick += new MouseEventHandler(showwinClick);
+            Controls.Add(showwin);
+        }
+
+        private void showwinClick(object sender, EventArgs e)
+        {
+            Form displayform = new DisplayForm();
+            displayform.Show();
         }
 
         private void gamepageUC_Load(object sender, EventArgs e)

@@ -14,12 +14,19 @@ namespace Planes
         {
             headrow = r;
             headcol = c;
-            planeorientation = 0;
+            planeorientation = o;
         }
 
         public int GetRow()
         {
             return headrow;
+        }
+
+        public void SetPlane(int row, int col, int orientation)
+        {
+            headrow = row;
+            headcol = col;
+            planeorientation = orientation;
         }
 
         public int GetCol()

@@ -115,6 +115,10 @@ namespace Planes
                     {
                         setupGrid[i, j].BackColor = Color.Blue;
                     }
+                    else if (p1planegrid.playgrid[i, j] == 0)
+                    {
+                        setupGrid[i, j].BackColor = Color.Transparent;
+                    }
                 }
             }
         }
@@ -388,6 +392,27 @@ namespace Planes
         private void turnbtn_Click(object sender, EventArgs e)
         {
             orientation = (orientation + 1) % 4;
+        }
+
+        private void autobtn_Click(object sender, EventArgs e)
+        {
+            p1planegrid.CreateGrid();
+            planescount = 3;
+            GridColour();
+        }
+
+        private void clearbtn_Click(object sender, EventArgs e)
+        {
+            planescount = 0;
+            p1planegrid.ClearGrid();
+            GridColour();
+        }
+
+        private void undobtn_Click(object sender, EventArgs e)
+        {
+            p1planegrid.RemovePlane();
+            planescount--;
+            GridColour();
         }
     }
 }

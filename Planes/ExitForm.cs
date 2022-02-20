@@ -57,6 +57,7 @@ namespace Planes
             {
                 MainForm.Instance.pagecontainer.Controls.RemoveByKey("setP1UC");
             }
+            this.Close();
         }
 
         private void cancelbtn_Click(object sender, EventArgs e)

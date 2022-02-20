@@ -33,6 +33,9 @@
             this.P2titlelbl = new System.Windows.Forms.Label();
             this.turnbtn = new System.Windows.Forms.Button();
             this.p2currentlbl = new System.Windows.Forms.Label();
+            this.autobtn = new System.Windows.Forms.Button();
+            this.clearbtn = new System.Windows.Forms.Button();
+            this.undobtn = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // P2backbtn
@@ -86,10 +89,44 @@
             this.p2currentlbl.Text = "Player 2 Placing Planes...";
             this.p2currentlbl.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // autobtn
+            // 
+            this.autobtn.Cursor = System.Windows.Forms.Cursors.Arrow;
+            this.autobtn.Location = new System.Drawing.Point(753, 318);
+            this.autobtn.Name = "autobtn";
+            this.autobtn.Size = new System.Drawing.Size(75, 23);
+            this.autobtn.TabIndex = 8;
+            this.autobtn.Text = "Auto";
+            this.autobtn.UseVisualStyleBackColor = true;
+            this.autobtn.Click += new System.EventHandler(this.autobtn_Click);
+            // 
+            // clearbtn
+            // 
+            this.clearbtn.Location = new System.Drawing.Point(753, 347);
+            this.clearbtn.Name = "clearbtn";
+            this.clearbtn.Size = new System.Drawing.Size(75, 23);
+            this.clearbtn.TabIndex = 9;
+            this.clearbtn.Text = "Clear";
+            this.clearbtn.UseVisualStyleBackColor = true;
+            this.clearbtn.Click += new System.EventHandler(this.clearbtn_Click);
+            // 
+            // undobtn
+            // 
+            this.undobtn.Location = new System.Drawing.Point(753, 376);
+            this.undobtn.Name = "undobtn";
+            this.undobtn.Size = new System.Drawing.Size(75, 23);
+            this.undobtn.TabIndex = 10;
+            this.undobtn.Text = "Undo";
+            this.undobtn.UseVisualStyleBackColor = true;
+            this.undobtn.Click += new System.EventHandler(this.undobtn_Click);
+            // 
             // setP2UC
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.undobtn);
+            this.Controls.Add(this.clearbtn);
+            this.Controls.Add(this.autobtn);
             this.Controls.Add(this.p2currentlbl);
             this.Controls.Add(this.turnbtn);
             this.Controls.Add(this.P2titlelbl);
@@ -110,5 +147,8 @@
         private System.Windows.Forms.Label P2titlelbl;
         private System.Windows.Forms.Button turnbtn;
         private System.Windows.Forms.Label p2currentlbl;
+        private System.Windows.Forms.Button autobtn;
+        private System.Windows.Forms.Button clearbtn;
+        private System.Windows.Forms.Button undobtn;
     }
 }

@@ -110,71 +110,75 @@ namespace Planes
         //when a button is clicked on the grid - if it is in range, the plane will be put in the orientation with that plane head
         private void setupGridClick(object sender, EventArgs e)
         {
-            if(inrange == true)
+            if (planescount < 3)
             {
-                planehover = Convert.ToString((sender as Button).Tag);
-                r = Convert.ToInt32(planehover.Substring(0, 1));
-                c = Convert.ToInt32(planehover.Substring(2, 1));
-                planescount++;
-                p2planegrid.AddPlane(r, c, orientation);
+                if (inrange == true)
+                {
+                    planehover = Convert.ToString((sender as Button).Tag);
+                    r = Convert.ToInt32(planehover.Substring(0, 1));
+                    c = Convert.ToInt32(planehover.Substring(2, 1));
+                    planescount++;
+                    p2planegrid.AddPlane(r, c, orientation);
 
-                if (orientation == 0)
-                {
-                    
-                    p2planegrid.playgrid[r, c] = 2;
-                    p2planegrid.playgrid[r + 1, c - 2] = 1;
-                    p2planegrid.playgrid[r + 1, c - 1] = 1;
-                    p2planegrid.playgrid[r + 1, c] = 1;
-                    p2planegrid.playgrid[r + 1, c + 1] = 1;
-                    p2planegrid.playgrid[r + 1, c + 2] = 1;
-                    p2planegrid.playgrid[r + 2, c] = 1;
-                    p2planegrid.playgrid[r + 3, c - 1] = 1;
-                    p2planegrid.playgrid[r + 3, c] = 1;
-                    p2planegrid.playgrid[r + 3, c + 1] = 1;
-                }
-                else if (orientation == 1)
-                {
-                    p2planegrid.playgrid[r, c] = 2;
-                    p2planegrid.playgrid[r + 2, c + 1] = 1;
-                    p2planegrid.playgrid[r + 1, c + 1] = 1;
-                    p2planegrid.playgrid[r, c + 1] = 1;
-                    p2planegrid.playgrid[r - 1, c + 1] = 1;
-                    p2planegrid.playgrid[r - 2, c + 1] = 1;
-                    p2planegrid.playgrid[r, c + 2] = 1;
-                    p2planegrid.playgrid[r, c + 3] = 1;
-                    p2planegrid.playgrid[r - 1, c + 3] = 1;
-                    p2planegrid.playgrid[r + 1, c + 3] = 1;
-                }
-                else if (orientation == 2)
-                {
-                    p2planegrid.playgrid[r, c] = 2;
-                    p2planegrid.playgrid[r - 1, c + 2] = 1;
-                    p2planegrid.playgrid[r - 1, c + 1] = 1;
-                    p2planegrid.playgrid[r - 1, c] = 1;
-                    p2planegrid.playgrid[r - 1, c - 1] = 1;
-                    p2planegrid.playgrid[r - 1, c - 2] = 1;
-                    p2planegrid.playgrid[r - 2, c] = 1;
-                    p2planegrid.playgrid[r - 3, c + 1] = 1;
-                    p2planegrid.playgrid[r - 3, c] = 1;
-                    p2planegrid.playgrid[r - 3, c - 1] = 1;
+                    if (orientation == 0)
+                    {
 
+                        p2planegrid.playgrid[r, c] = 2;
+                        p2planegrid.playgrid[r + 1, c - 2] = 1;
+                        p2planegrid.playgrid[r + 1, c - 1] = 1;
+                        p2planegrid.playgrid[r + 1, c] = 1;
+                        p2planegrid.playgrid[r + 1, c + 1] = 1;
+                        p2planegrid.playgrid[r + 1, c + 2] = 1;
+                        p2planegrid.playgrid[r + 2, c] = 1;
+                        p2planegrid.playgrid[r + 3, c - 1] = 1;
+                        p2planegrid.playgrid[r + 3, c] = 1;
+                        p2planegrid.playgrid[r + 3, c + 1] = 1;
+                    }
+                    else if (orientation == 1)
+                    {
+                        p2planegrid.playgrid[r, c] = 2;
+                        p2planegrid.playgrid[r + 2, c + 1] = 1;
+                        p2planegrid.playgrid[r + 1, c + 1] = 1;
+                        p2planegrid.playgrid[r, c + 1] = 1;
+                        p2planegrid.playgrid[r - 1, c + 1] = 1;
+                        p2planegrid.playgrid[r - 2, c + 1] = 1;
+                        p2planegrid.playgrid[r, c + 2] = 1;
+                        p2planegrid.playgrid[r, c + 3] = 1;
+                        p2planegrid.playgrid[r - 1, c + 3] = 1;
+                        p2planegrid.playgrid[r + 1, c + 3] = 1;
+                    }
+                    else if (orientation == 2)
+                    {
+                        p2planegrid.playgrid[r, c] = 2;
+                        p2planegrid.playgrid[r - 1, c + 2] = 1;
+                        p2planegrid.playgrid[r - 1, c + 1] = 1;
+                        p2planegrid.playgrid[r - 1, c] = 1;
+                        p2planegrid.playgrid[r - 1, c - 1] = 1;
+                        p2planegrid.playgrid[r - 1, c - 2] = 1;
+                        p2planegrid.playgrid[r - 2, c] = 1;
+                        p2planegrid.playgrid[r - 3, c + 1] = 1;
+                        p2planegrid.playgrid[r - 3, c] = 1;
+                        p2planegrid.playgrid[r - 3, c - 1] = 1;
+
+                    }
+                    else
+                    {
+                        p2planegrid.playgrid[r, c] = 2;
+                        p2planegrid.playgrid[r - 2, c - 1] = 1;
+                        p2planegrid.playgrid[r - 1, c - 1] = 1;
+                        p2planegrid.playgrid[r, c - 1] = 1;
+                        p2planegrid.playgrid[r + 1, c - 1] = 1;
+                        p2planegrid.playgrid[r + 2, c - 1] = 1;
+                        p2planegrid.playgrid[r, c - 2] = 1;
+                        p2planegrid.playgrid[r - 1, c - 3] = 1;
+                        p2planegrid.playgrid[r, c - 3] = 1;
+                        p2planegrid.playgrid[r + 1, c - 3] = 1;
+                    }
+                    GridColour();
+                    inrange = false;
                 }
-                else
-                {
-                    p2planegrid.playgrid[r, c] = 2;
-                    p2planegrid.playgrid[r - 2, c - 1] = 1;
-                    p2planegrid.playgrid[r - 1, c - 1] = 1;
-                    p2planegrid.playgrid[r, c - 1] = 1;
-                    p2planegrid.playgrid[r + 1, c - 1] = 1;
-                    p2planegrid.playgrid[r + 2, c - 1] = 1;
-                    p2planegrid.playgrid[r, c - 2] = 1;
-                    p2planegrid.playgrid[r - 1, c - 3] = 1;
-                    p2planegrid.playgrid[r, c - 3] = 1;
-                    p2planegrid.playgrid[r + 1, c - 3] = 1;
-                }
-                GridColour();
-                inrange = false;
             }
+            
             
         }
 
@@ -191,6 +195,10 @@ namespace Planes
                     else if(p2planegrid.playgrid[i, j] == 1)
                     {
                         setupGrid[i, j].BackColor = Color.Blue;
+                    }
+                    else if(p2planegrid.playgrid[i, j] == 0)
+                    {
+                        setupGrid[i, j].BackColor = Color.Transparent;
                     }
                 }
             }
@@ -397,6 +405,26 @@ namespace Planes
             CreateGrid(rows, cols, tileWidth, tileHeight, gridTop, gridLeft);
         }
 
+        private void autobtn_Click(object sender, EventArgs e)
+        {
+            p2planegrid.CreateGrid();
+            planescount = 3;
+            GridColour();
+        }
 
+        private void clearbtn_Click(object sender, EventArgs e)
+        {
+            planescount = 0;
+            p2planegrid.ClearGrid();
+            GridColour();
+
+        }
+
+        private void undobtn_Click(object sender, EventArgs e)
+        {
+            p2planegrid.RemovePlane();
+            planescount--;
+            GridColour();
+        }
     }
 }

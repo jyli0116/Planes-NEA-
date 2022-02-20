@@ -33,6 +33,9 @@
             this.P1titlelbl = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
             this.p1currentlbl = new System.Windows.Forms.Label();
+            this.autobtn = new System.Windows.Forms.Button();
+            this.clearbtn = new System.Windows.Forms.Button();
+            this.undobtn = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // P1backbtn
@@ -86,10 +89,43 @@
             this.p1currentlbl.Text = "Player 1 Placing Planes...";
             this.p1currentlbl.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // autobtn
+            // 
+            this.autobtn.Location = new System.Drawing.Point(753, 318);
+            this.autobtn.Name = "autobtn";
+            this.autobtn.Size = new System.Drawing.Size(75, 23);
+            this.autobtn.TabIndex = 8;
+            this.autobtn.Text = "Auto";
+            this.autobtn.UseVisualStyleBackColor = true;
+            this.autobtn.Click += new System.EventHandler(this.autobtn_Click);
+            // 
+            // clearbtn
+            // 
+            this.clearbtn.Location = new System.Drawing.Point(753, 347);
+            this.clearbtn.Name = "clearbtn";
+            this.clearbtn.Size = new System.Drawing.Size(75, 23);
+            this.clearbtn.TabIndex = 9;
+            this.clearbtn.Text = "Clear";
+            this.clearbtn.UseVisualStyleBackColor = true;
+            this.clearbtn.Click += new System.EventHandler(this.clearbtn_Click);
+            // 
+            // undobtn
+            // 
+            this.undobtn.Location = new System.Drawing.Point(753, 376);
+            this.undobtn.Name = "undobtn";
+            this.undobtn.Size = new System.Drawing.Size(75, 23);
+            this.undobtn.TabIndex = 10;
+            this.undobtn.Text = "Undo";
+            this.undobtn.UseVisualStyleBackColor = true;
+            this.undobtn.Click += new System.EventHandler(this.undobtn_Click);
+            // 
             // setP1UC
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.undobtn);
+            this.Controls.Add(this.clearbtn);
+            this.Controls.Add(this.autobtn);
             this.Controls.Add(this.p1currentlbl);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.P1titlelbl);
@@ -110,5 +146,8 @@
         private System.Windows.Forms.Label P1titlelbl;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Label p1currentlbl;
+        private System.Windows.Forms.Button autobtn;
+        private System.Windows.Forms.Button clearbtn;
+        private System.Windows.Forms.Button undobtn;
     }
 }

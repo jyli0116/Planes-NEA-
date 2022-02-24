@@ -30,6 +30,7 @@
         {
             this.startgamebtn = new System.Windows.Forms.Button();
             this.instructionsbtn = new System.Windows.Forms.Button();
+            this.savedgamebtn = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // startgamebtn
@@ -52,10 +53,21 @@
             this.instructionsbtn.UseVisualStyleBackColor = true;
             this.instructionsbtn.Click += new System.EventHandler(this.instructionsbtn_Click);
             // 
+            // savedgamebtn
+            // 
+            this.savedgamebtn.Location = new System.Drawing.Point(363, 388);
+            this.savedgamebtn.Name = "savedgamebtn";
+            this.savedgamebtn.Size = new System.Drawing.Size(150, 59);
+            this.savedgamebtn.TabIndex = 3;
+            this.savedgamebtn.Text = "Resume Saved Game";
+            this.savedgamebtn.UseVisualStyleBackColor = true;
+            this.savedgamebtn.Click += new System.EventHandler(this.savedgamebtn_Click);
+            // 
             // HomeUC
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.savedgamebtn);
             this.Controls.Add(this.instructionsbtn);
             this.Controls.Add(this.startgamebtn);
             this.Name = "HomeUC";
@@ -68,5 +80,6 @@
 
         private System.Windows.Forms.Button startgamebtn;
         private System.Windows.Forms.Button instructionsbtn;
+        private System.Windows.Forms.Button savedgamebtn;
     }
 }

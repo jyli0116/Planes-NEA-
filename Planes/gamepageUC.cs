@@ -11,7 +11,7 @@ namespace Planes
 {
     public partial class gamepageUC : UserControl
     {
-        //grids of buttons users interact with
+        // grids of buttons users interact with
         public static gamepageUC gamepagescreen;
         private Button[,] p1Grid;
         private Button[,] p2Grid;
@@ -24,54 +24,87 @@ namespace Planes
         const int tileHeight = gridHeight / rows;
         const int gridTop = 200;
         const int gridLeft = 300;
-        //the grids set up beforehand
+        // the grids set up beforehand
         public Grid p2planegrid;
         public Grid p1planegrid;
-        //the grids that show what is displayed on the buttons
+        // the grids that show what is displayed on the buttons
         public int[,] p1refgrid = new int[10, 10];
         public int[,] p2refgrid = new int[10, 10];
         public int playerturn;
         public int p1headno = 0;
         public int p2headno = 0;
         public int nousers;
-        public int difficulty;
-        Random rnd = new Random();
+        public int difficulty = 0;
+        private Random rnd = new Random();
         private Grid simgrid = new Grid();
         private int[,] computergrid = new int[10, 10];
         private bool win = false;
         private Button showwin;
+        private bool lastturn = false;
+        private bool saved = false;
+        private string filename = "";
 
-
+        // access grids previously set up and sets no of player/difficulty
         public gamepageUC()
         {
             gamepagescreen = this;
             InitializeComponent();
-            setP2UC setP2 = setP2UC.setP2screen;
-            p1planegrid = setP2.p2planegrid;
-            noPlayersUC noplayers = noPlayersUC.noplayersscreen;
-            nousers = noplayers.noplayers;
-            if (nousers == 2)
+
+            if (MainForm.Instance.pagecontainer.Controls.ContainsKey("SavedUC"))
             {
-                p1lbl.Text = "Player 1";
-                p2lbl.Text = "Player 2";
-                statuslbl.Text = "Player 1's Turn";
-                setP1UC setP1 = setP1UC.setP1screen;
-                p2planegrid = setP1.p1planegrid;
-                playerturn = 1;
+                SavedUC savedscreen = SavedUC.savedscreen;
+                saved = savedscreen.saved;
+                if (saved == true)
+                {
+                    p1planegrid = savedscreen.p1planegrid;
+                    p2planegrid = savedscreen.p2planegrid;
+                    p1refgrid = savedscreen.p1refgrid;
+                    p2refgrid = savedscreen.p2refgrid;
+                    difficulty = savedscreen.difficulty;
+                    nousers = savedscreen.nousers;
+                    p1headno = savedscreen.p1headno;
+                    p2headno = savedscreen.p2headno;
+                    playerturn = savedscreen.playerturn;
+                    
+
+                }
+
             }
-            else
+
+            if (saved == false)
             {
-                p1lbl.Text = "Computer";
-                p2lbl.Text = "You";
-                playerturn = 0;
-                p2planegrid = new Grid();
-                p2planegrid.CreateGrid();
-                difficultyUC difficultyscreen = difficultyUC.difficultyscreen;
-                difficulty = difficultyscreen.difficultylvl;
+                setP2UC setP2 = setP2UC.setP2screen;
+                p1planegrid = setP2.p2planegrid;
+                noPlayersUC noplayers = noPlayersUC.noplayersscreen;
+                nousers = noplayers.noplayers;
+                if (nousers == 2)
+                {
+                    p1lbl.Text = "Player 1";
+                    p2lbl.Text = "Player 2";
+                    statuslbl.Text = "Player 1's Turn";
+                    setP1UC setP1 = setP1UC.setP1screen;
+                    p2planegrid = setP1.p1planegrid;
+                    playerturn = 1;
+                }
+                else
+                {
+                    p1lbl.Text = "Computer";
+                    p2lbl.Text = "You";
+                    playerturn = 0;
+                    p2planegrid = new Grid();
+                    p2planegrid.CreateGrid();
+                    difficultyUC difficultyscreen = difficultyUC.difficultyscreen;
+                    difficulty = difficultyscreen.difficultylvl;
+                }
             }
+
+            CreateGrids(rows, cols, tileWidth, tileHeight, gridTop, gridLeft);
+            GridColour();
+
 
         }
 
+        // used for computer to make a move
         private void GamePlay()
         {
             if (nousers == 1 && playerturn == 1)
@@ -91,41 +124,101 @@ namespace Planes
             }
         }
 
+        int r;
+        int c;
+        // computer move for easy difficulty
+        // randomly generates next move
         private void EasyMove()
         {
-            int r = 0, c = 0;
-            bool played = false;
 
-            while (played == false)
+            bool played = false;
+            int[,] huntmoves = { {1, 1, 1, 1, 1, 2, 3, 3, 3, -2, -1, 0, 1, 2, 0, -1, 0, 1, 2, 1, 0, -1, -2, 0, 1, 0, -1, -1, -1, -1, -1, -1, -2, -3, -3, -3}, {2, 1, 0, -1, -1, 0, 1, 0, -1, 1, 1, 1, 1, 1, 2, 3, 3, 3, -1, -1, -1, -1, -1, -2, -3, -3, -3, 2, 1, 0, -1, -2, 0, 1, 0, 1} };
+            int huntmove = 0;
+            
+
+            if (lastturn == false)
             {
-                r = rnd.Next(10);
-                c = rnd.Next(10);
-                if (p1refgrid[r, c] == 0)
+                while (played == false)
                 {
-                    played = true;
+                    r = rnd.Next(10);
+                    c = rnd.Next(10);
+                    if (p1refgrid[r, c] == 0)
+                    {
+                        played = true;
+                    }
                 }
             }
-
-            if (p1planegrid.playgrid[r, c] == 0)
+            else if (lastturn == true)
             {
-                p1refgrid[r, c] = -1;
+                while (played == false)
+                {
+                    huntmove = rnd.Next(36);
+
+                    if ((r + huntmoves[0, huntmove] < 10) && (r + huntmoves[0, huntmove] >= 0) && (c + huntmoves[1, huntmove] < 10) && (c + huntmoves[1, huntmove] >= 0))
+                    {
+                        if (p1refgrid[r + huntmoves[0, huntmove], c + huntmoves[1, huntmove]] == 0)
+                        {
+                            played = true;
+                        }
+                    }
+
+
+                }
+
+            }
+
+            if (lastturn == false)
+            {
+                if (p1planegrid.playgrid[r, c] == 0)
+                {
+                    p1refgrid[r, c] = -1;
+                }
+                else
+                {
+                    p1refgrid[r, c] = p1planegrid.playgrid[r, c];
+                }
+
+                if (p1refgrid[r, c] == 2)
+                {
+                    p1headno++;
+                }
+                else if (p1planegrid.playgrid[r, c] == 1)
+                {
+                    lastturn = true;
+                }
             }
             else
             {
-                p1refgrid[r, c] = p1planegrid.playgrid[r, c];
+                if (p1planegrid.playgrid[r + huntmoves[0, huntmove], c + huntmoves[1, huntmove]] == 0)
+                {
+                    p1refgrid[r + huntmoves[0, huntmove], c + huntmoves[1, huntmove]] = -1;
+                }
+                else
+                {
+                    p1refgrid[r + huntmoves[0, huntmove], c + huntmoves[1, huntmove]] = p1planegrid.playgrid[r + huntmoves[0, huntmove], c + huntmoves[1, huntmove]];
+                }
+
+
+                if (p1refgrid[r + huntmoves[0, huntmove], c + huntmoves[1, huntmove]] == 2)
+                {
+                    p1headno++;
+                    lastturn = false;
+                }
+
             }
 
-            if (p1refgrid[r, c] == 2)
-            {
-                p1headno++;
-            }
+
+
             GridColour();
+            saved = false;
 
+            // checks if win, and message appears
             if (CheckWin(p1headno))
             {
                 playerturn = 3;
                 MessageBox.Show("Player 1 Won :)");
                 ShowWinBtn();
+                DeleteSlot();
             }
             else
             {
@@ -133,6 +226,8 @@ namespace Planes
             }
         }
 
+        // generates computer move for medium difficulty
+        // not particularly sophisticated Monte Carlo Sim.
         private void MediumMove()
         {
             int r = 0, c = 0, add = 0;
@@ -220,12 +315,14 @@ namespace Planes
                 p1headno++;
             }
             GridColour();
+            saved = false;
 
             if (CheckWin(p1headno))
             {
                 playerturn = 3;
                 MessageBox.Show("Player 1 Won :)");
                 ShowWinBtn();
+                DeleteSlot();
             }
             else
             {
@@ -236,6 +333,9 @@ namespace Planes
 
         }
 
+        // generates computer move at hard difficulty
+        // More sophisticated Monte Carlo
+        // Slow in later moves
         private void HardMove()
         {
             int r = 0, c = 0;
@@ -254,6 +354,7 @@ namespace Planes
             while (loopno < 50)
             {
                 simgrid.CreateGrid();
+                // grid only passes if it matches current played moves
                 for (int i = 0; i < 10; i++)
                 {
                     for (int j = 0; j < 10; j++)
@@ -323,12 +424,14 @@ namespace Planes
                 p1headno++;
             }
             GridColour();
+            saved = false;
 
             if (CheckWin(p1headno))
             {
                 playerturn = 3;
                 MessageBox.Show("Player 1 Won :)");
                 ShowWinBtn();
+                DeleteSlot();
             }
             else
             {
@@ -337,6 +440,7 @@ namespace Planes
             }
         }
 
+        // checks if player has won yet (hit three plane heads)
         private bool CheckWin(int planeheads)
         {
             if(planeheads == 3)
@@ -350,6 +454,18 @@ namespace Planes
             }
         }
 
+        private void DeleteSlot()
+        {
+            if (!String.IsNullOrWhiteSpace(filename))
+            {
+                using (StreamWriter sw = new StreamWriter(filename, false))
+                {
+                    sw.WriteLine();
+                }
+            }
+        }
+
+        // changes the colour of the grid of buttons in accordance to ref grid
         private void GridColour()
         {
             for (int i = 0; i < 10; i++)
@@ -386,15 +502,17 @@ namespace Planes
         }
         
 
+        //generates and adds the grids of buttons for either player
         private void CreateGrids(int rows, int cols, int tileWidth, int tileHeight, int gridTop, int gridLeft)
         {
             p1Grid = new Button[rows, cols];
             p2Grid = new Button[rows, cols];
+
             for (int r = 0; r < rows; r++)
             {
                 for (int c = 0; c < cols; c++)
                 {
-                    p1refgrid[r, c] = 0;
+                    //p1refgrid[r, c] = 0;
                     p1Grid[r, c] = new Button()
                     {
                         Size = new Size(tileWidth, tileHeight),
@@ -414,7 +532,7 @@ namespace Planes
             {
                 for (int c = 0; c < cols; c++)
                 {
-                    p2refgrid[r, c] = 0;
+                    //p2refgrid[r, c] = 0;
                     p2Grid[r, c] = new Button()
                     {
                         Size = new Size(tileWidth, tileHeight),
@@ -432,7 +550,7 @@ namespace Planes
 
         }
 
-        
+        // allows player one to play a move if two player game and is their turn
         private void p1GridClick(object sender, EventArgs e)
         {
             if (playerturn == 1 && nousers == 2)
@@ -455,11 +573,14 @@ namespace Planes
                         p1headno++;
                     }
                     GridColour();
+                    saved = false;
+
                     if (CheckWin(p1headno))
                     {
                         playerturn = 3;
                         MessageBox.Show("Player 1 Won :)");
                         ShowWinBtn();
+                        DeleteSlot();
                     }
                     else
                     {
@@ -473,6 +594,7 @@ namespace Planes
 
         }
 
+        // allows player 2 to playa move when their turn
         private void p2GridClick(object sender, EventArgs e)
         {
             if (playerturn == 0)
@@ -495,18 +617,22 @@ namespace Planes
                         p2headno++;
                     }
                     GridColour();
+                    saved = false;
 
                     if (CheckWin(p2headno))
                     {
                         playerturn = 3;
                         MessageBox.Show("Player 2 Won :)");
                         ShowWinBtn();
+                        DeleteSlot();
                     }
+
 
                     if (playerturn != 3)
                     {
 
                         playerturn = 1;
+
 
                         if (nousers == 1)
                         {
@@ -523,6 +649,7 @@ namespace Planes
             }
         }
 
+        // buttons changes colour when hovered over on P1 turn
         private void p1GridHover(object sender, EventArgs e)
         {
             if (playerturn == 1)
@@ -538,6 +665,7 @@ namespace Planes
 
         }
 
+        // button changes colour when P1 leaves button
         private void p1GridLeave(object sender, EventArgs e)
         {
             if (playerturn == 1)
@@ -553,6 +681,7 @@ namespace Planes
 
         }
 
+        // button changes colour when P2 hovers over on their turn
         private void p2GridHover(object sender, EventArgs e)
         {
             if (playerturn == 0)
@@ -568,6 +697,7 @@ namespace Planes
 
         }
 
+        // button returns when P2 leaves 
         private void p2GridLeave(object sender, EventArgs e)
         {
             if (playerturn == 0)
@@ -586,7 +716,7 @@ namespace Planes
         //allows user to return to home page from game page
         private void exitgamebtn_Click(object sender, EventArgs e)
         {
-            if (win == true)
+            if (win == true || saved == true)
             {
                 for (int i = 0; i < 10; i++)
                 {
@@ -630,6 +760,8 @@ namespace Planes
             
         }
 
+        // shows button once either player has won
+        // allows user to see boards
         private void ShowWinBtn()
         {
             showwin = new Button()
@@ -643,6 +775,7 @@ namespace Planes
             Controls.Add(showwin);
         }
 
+        // when button clicked, form appears with boards
         private void showwinClick(object sender, EventArgs e)
         {
             Form displayform = new DisplayForm();
@@ -650,8 +783,57 @@ namespace Planes
         }
 
         private void gamepageUC_Load(object sender, EventArgs e)
+        {           
+            GamePlay();
+        }
+
+        private void savebtn_Click(object sender, EventArgs e)
         {
-            CreateGrids(rows, cols, tileWidth, tileHeight, gridTop, gridLeft);
+            if (String.IsNullOrEmpty(filename))
+            {
+                Form saveform = new saveform();
+                saveform.Show();
+            }
+            else
+            {
+                using (StreamWriter sw = new StreamWriter(filename, false))
+                {
+                    for (int i = 0; i < 10; i++)
+                    {
+                        for (int j = 0; j < 10; j++)
+                        {
+                            sw.WriteLine(p1planegrid.playgrid[i, j]);
+                        }
+                    }
+                    for (int i = 0; i < 10; i++)
+                    {
+                        for (int j = 0; j < 10; j++)
+                        {
+                            sw.WriteLine(p2planegrid.playgrid[i, j]);
+                        }
+                    }
+                    for (int i = 0; i < 10; i++)
+                    {
+                        for (int j = 0; j < 10; j++)
+                        {
+                            sw.WriteLine(p1refgrid[i, j]);
+                        }
+                    }
+                    for (int i = 0; i < 10; i++)
+                    {
+                        for (int j = 0; j < 10; j++)
+                        {
+                            sw.WriteLine(p1refgrid[i, j]);
+                        }
+                    }
+                    sw.WriteLine(playerturn);
+                    sw.WriteLine(p1headno);
+                    sw.WriteLine(p2headno);
+                    sw.WriteLine(nousers);
+                    sw.WriteLine(difficulty);
+                }
+            }
+            saved = true;
         }
     }
 }

@@ -31,6 +31,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.exitbtn = new System.Windows.Forms.Button();
             this.cancelbtn = new System.Windows.Forms.Button();
+            this.savebtn = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -44,9 +45,9 @@
             // 
             // exitbtn
             // 
-            this.exitbtn.Location = new System.Drawing.Point(54, 101);
+            this.exitbtn.Location = new System.Drawing.Point(158, 101);
             this.exitbtn.Name = "exitbtn";
-            this.exitbtn.Size = new System.Drawing.Size(112, 23);
+            this.exitbtn.Size = new System.Drawing.Size(70, 23);
             this.exitbtn.TabIndex = 1;
             this.exitbtn.Text = "Exit";
             this.exitbtn.UseVisualStyleBackColor = true;
@@ -54,19 +55,30 @@
             // 
             // cancelbtn
             // 
-            this.cancelbtn.Location = new System.Drawing.Point(216, 101);
+            this.cancelbtn.Location = new System.Drawing.Point(258, 101);
             this.cancelbtn.Name = "cancelbtn";
-            this.cancelbtn.Size = new System.Drawing.Size(112, 23);
+            this.cancelbtn.Size = new System.Drawing.Size(70, 23);
             this.cancelbtn.TabIndex = 1;
             this.cancelbtn.Text = "Cancel";
             this.cancelbtn.UseVisualStyleBackColor = true;
             this.cancelbtn.Click += new System.EventHandler(this.cancelbtn_Click);
+            // 
+            // savebtn
+            // 
+            this.savebtn.Location = new System.Drawing.Point(57, 101);
+            this.savebtn.Name = "savebtn";
+            this.savebtn.Size = new System.Drawing.Size(70, 23);
+            this.savebtn.TabIndex = 2;
+            this.savebtn.Text = "Save";
+            this.savebtn.UseVisualStyleBackColor = true;
+            this.savebtn.Click += new System.EventHandler(this.savebtn_Click);
             // 
             // ExitForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(395, 168);
+            this.Controls.Add(this.savebtn);
             this.Controls.Add(this.cancelbtn);
             this.Controls.Add(this.exitbtn);
             this.Controls.Add(this.label1);
@@ -81,5 +93,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button exitbtn;
         private System.Windows.Forms.Button cancelbtn;
+        private System.Windows.Forms.Button savebtn;
     }
 }

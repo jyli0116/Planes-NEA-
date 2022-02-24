@@ -36,6 +36,7 @@ namespace Planes
             p1planegrid = new Grid();
         }
 
+        // creates grid of buttons with events
         private void CreateGrid(int rows, int cols, int tileWidth, int tileHeight, int gridTop, int gridLeft)
         {
             for (int r = 0; r < 10; r++)
@@ -68,6 +69,7 @@ namespace Planes
 
         }
 
+        // checks is space is free to place plane
         private bool planeenabled(int r, int c)
         {
             if (orientation == 0)
@@ -101,6 +103,7 @@ namespace Planes
             return false;
         }
 
+        // changes the colour of grid according to reference array
         private void GridColour()
         {
             for (int i = 0; i < 10; i++)
@@ -123,6 +126,8 @@ namespace Planes
             }
         }
 
+        // when grid cutton clicked, check if plane can be placed
+        // if so, place plane
         private void setupGridClick(object sender, EventArgs e)
         {
             if (inrange == true)
@@ -191,6 +196,7 @@ namespace Planes
 
         }
 
+        // displays plane position when mouse hovers over grid if possible
         private void setupGridHover(object sender, EventArgs e)
         {
             planehover = Convert.ToString((sender as Button).Tag);
@@ -319,7 +325,7 @@ namespace Planes
             
         }
 
-        //when the mouse leaves a button, if a plane hasn't already been placed there, the button turns to normal
+        // when the mouse leaves a button, if a plane hasn't already been placed there, the button turns to normal
         private void setupGridLeave(object sender, EventArgs e)
         {
             if (p1planegrid.playgrid[r, c] == 0)
@@ -338,7 +344,7 @@ namespace Planes
             }
         }
 
-        //confirm button set up p1 page to set up p2 page
+        // confirm button set up p1 page to set up p2 page
         private void P1confirmbtn_Click(object sender, EventArgs e)
         {
             if (planescount == 3)
@@ -375,25 +381,29 @@ namespace Planes
             }
         }
 
-        //back button set up p1 page to no of players page
+        // back button set up p1 page to no of players page
         private void P1backbtn_Click(object sender, EventArgs e)
         {
-            //brings up pop up window to confirm if should exit set up page
+            // brings up pop up window to confirm if should exit set up page
             Form setupconfirm = new setupconfirm();
             setupconfirm.Show();
             
         }
 
+
+        // create grid of buttons when UC first loads
         private void setP1UC_Load(object sender, EventArgs e)
         {
             CreateGrid(rows, cols, tileWidth, tileHeight, gridTop, gridLeft);
         }
 
+        // changes orientation of plane
         private void turnbtn_Click(object sender, EventArgs e)
         {
             orientation = (orientation + 1) % 4;
         }
 
+        // auto creates a grid of 3 planes
         private void autobtn_Click(object sender, EventArgs e)
         {
             p1planegrid.CreateGrid();
@@ -401,6 +411,7 @@ namespace Planes
             GridColour();
         }
 
+        // clears grid of all planes
         private void clearbtn_Click(object sender, EventArgs e)
         {
             planescount = 0;
@@ -408,6 +419,7 @@ namespace Planes
             GridColour();
         }
 
+        // removes last plane placed
         private void undobtn_Click(object sender, EventArgs e)
         {
             p1planegrid.RemovePlane();

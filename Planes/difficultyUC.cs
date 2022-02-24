@@ -8,6 +8,8 @@ using System.Windows.Forms;
 
 namespace Planes
 {
+    // UC for the user to choose the level of difficulty
+    // Against the computer
     public partial class difficultyUC : UserControl
     {
         public static difficultyUC difficultyscreen;
@@ -19,17 +21,21 @@ namespace Planes
             InitializeComponent();
         }
 
+        // Opens single player game: easy
         private void easybtn_Click(object sender, EventArgs e)
         {
             singleBoard();
             difficultylvl = 0;
         }
 
+        // Opens single player game: medium
         private void mediumbtn_Click(object sender, EventArgs e)
         {
             singleBoard();
             difficultylvl = 1;
         }
+
+        // Opens single player game: hard
         private void hardbtn_Click(object sender, EventArgs e)
         {
             singleBoard();
@@ -48,6 +54,7 @@ namespace Planes
             MainForm.Instance.pagecontainer.Controls["setP2UC"].BringToFront();
         }
 
+        // returns back to number of players UC
         private void button1_Click(object sender, EventArgs e)
         {
             if(!MainForm.Instance.pagecontainer.Controls.ContainsKey("noPlayersUC"))

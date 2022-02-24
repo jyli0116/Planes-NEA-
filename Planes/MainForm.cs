@@ -26,6 +26,7 @@ namespace Planes
             }
         }
 
+        //panel container which UCs are docked to
         public Panel pagecontainer
         {
             get { return panelcontainer; }

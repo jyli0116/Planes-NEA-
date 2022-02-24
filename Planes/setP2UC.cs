@@ -30,7 +30,7 @@ namespace Planes
         public Grid p2planegrid;
         int planescount = 0;
 
-        //on load, creats instance of UC and creates a grid to store p2 planes
+        // on load, creats instance of UC and creates a grid to store p2 planes
         public setP2UC()
         {
             setP2screen = this;
@@ -39,8 +39,8 @@ namespace Planes
         }
 
 
-        //creates a grid of buttons and a grid that stores the status of the squares underneath
-        //adds three event handers for mousehover, mouseleave, mouseclick, then adds control to uc
+        // creates a grid of buttons and a grid that stores the status of the squares underneath
+        // adds three event handers for mousehover, mouseleave, mouseclick, then adds control to uc
         private void CreateGrid(int rows, int cols, int tileWidth, int tileHeight, int gridTop, int gridLeft)
         {
             for (int r = 0; r < 10; r++)
@@ -73,7 +73,7 @@ namespace Planes
 
         }
 
-        //checks if the squares for a plane with head in position and an orientation can be put there, or if there are already plane parts there
+        // checks if the squares for a plane with head in position and an orientation can be put there, or if there are already plane parts there
         private bool planeenabled(int r, int c)
         {
             if(orientation == 0)
@@ -107,7 +107,7 @@ namespace Planes
             return false;
         }
 
-        //when a button is clicked on the grid - if it is in range, the plane will be put in the orientation with that plane head
+        // when a button is clicked on the grid - if it is in range, the plane will be put in the orientation with that plane head
         private void setupGridClick(object sender, EventArgs e)
         {
             if (planescount < 3)
@@ -182,6 +182,7 @@ namespace Planes
             
         }
 
+        // changes colours of grid buttons according to reference array
         private void GridColour()
         {
             for (int i = 0; i < 10; i++)
@@ -204,7 +205,7 @@ namespace Planes
             }
         }
 
-        //when mouse hovers over a button, if there are less than three planes on the grid, then the plane will appear on the grid
+        // when mouse hovers over a button, if there are less than three planes on the grid, then the plane will appear on the grid
         private void setupGridHover(object sender, EventArgs e)
         {
             planehover = Convert.ToString((sender as Button).Tag);
@@ -217,7 +218,7 @@ namespace Planes
                 {
 
 
-                    //which is it is possible to put a plane in that position with that orientation
+                    // which is it is possible to put a plane in that position with that orientation
                     if (orientation == 0)
                     {
                         if (c + 2 <= 9 && c - 2 >= 0 && r + 3 <= 9)
@@ -264,7 +265,7 @@ namespace Planes
                         }
                     }
 
-                    //if its not in range, then cannot click, else, the plane is displayed
+                    // if its not in range, then cannot click, else, the plane is displayed
                     if (inrange == false)
                     {
                         ((Button)sender).BackColor = Color.DarkGray;
@@ -332,13 +333,13 @@ namespace Planes
             }           
         }
 
-        //click button to change orientation of the planes placed
+        // click button to change orientation of the planes placed
         private void turnbtn_Click(object sender, EventArgs e)
         {
             orientation = (orientation + 1) % 4;
         }
 
-        //when the mouse leaves a button, if a plane hasn't already been placed there, the button turns to normal
+        // when the mouse leaves a button, if a plane hasn't already been placed there, the button turns to normal
         private void setupGridLeave(object sender, EventArgs e)
         {
             if(p2planegrid.playgrid[r, c] == 0)
@@ -357,14 +358,15 @@ namespace Planes
             }      
         }
 
-        //back button set up p2 page to no of players page
+        // back button set up p2 page to no of players page
         private void P2backbtn_Click(object sender, EventArgs e)
         {
-            //brings up pop up window to confirm if should exit set up page
+            // brings up pop up window to confirm if should exit set up page
             Form setupconfirm = new setupconfirm();
             setupconfirm.Show();
         }
 
+        // when all three planes placed user confirms and exits page
         private void P2confirmbtn_Click(object sender, EventArgs e)
         {
             if(planescount == 3)
@@ -400,11 +402,13 @@ namespace Planes
             }
         }
 
+        // when UC loads, creates grid of buttons
         private void setP2UC_Load(object sender, EventArgs e)
         {
             CreateGrid(rows, cols, tileWidth, tileHeight, gridTop, gridLeft);
         }
 
+        // auto create grid of three planes
         private void autobtn_Click(object sender, EventArgs e)
         {
             p2planegrid.CreateGrid();
@@ -412,6 +416,7 @@ namespace Planes
             GridColour();
         }
 
+        // clears grid of all planes
         private void clearbtn_Click(object sender, EventArgs e)
         {
             planescount = 0;
@@ -420,6 +425,7 @@ namespace Planes
 
         }
 
+        // removes last placed plane
         private void undobtn_Click(object sender, EventArgs e)
         {
             p2planegrid.RemovePlane();

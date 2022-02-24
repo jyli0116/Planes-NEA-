@@ -23,6 +23,7 @@ namespace Planes
             InitializeComponent();
         }
 
+        // closes form, Main form displays homepageUC, closes current setupUCs
         private void exitbtn_Click(object sender, EventArgs e)
         {
             for (int i = 0; i < 10; i++)
@@ -60,8 +61,16 @@ namespace Planes
             this.Close();
         }
 
+        // closes form no changes occur to main form
         private void cancelbtn_Click(object sender, EventArgs e)
         {
+            this.Close();
+        }
+
+        private void savebtn_Click(object sender, EventArgs e)
+        {
+            Form saveform = new saveform();
+            saveform.Show();
             this.Close();
         }
     }

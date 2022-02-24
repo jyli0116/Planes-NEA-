@@ -6,6 +6,7 @@ namespace Planes
 {
     public class Plane
     {
+        // variables define position of plane
         protected int headrow;
         protected int headcol;
         protected int planeorientation;

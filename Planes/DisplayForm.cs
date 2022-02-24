@@ -8,6 +8,7 @@ using System.Windows.Forms;
 
 namespace Planes
 {
+    //Form used for displaying the grids the players are playing with
     public partial class DisplayForm : Form
     {
         private Button[,] p1Grid;
@@ -26,12 +27,14 @@ namespace Planes
 
         public DisplayForm()
         {
+            //accesses variables from game page
             gamepageUC gamescreen = gamepageUC.gamepagescreen;
             p2planegrid = gamescreen.p2planegrid;
             p1planegrid = gamescreen.p1planegrid;
             InitializeComponent();
         }
 
+        //adjusts the colours of the grid of buttons depending on whats on the grid
         private void GridColour()
         {
             for (int i = 0; i < 10; i++)
@@ -67,6 +70,7 @@ namespace Planes
             }
         }
 
+        //when the form is loaded, two grids of buttons created to display the boards playing against
         private void DisplayForm_Load(object sender, EventArgs e)
         {
             p1Grid = new Button[rows, cols];

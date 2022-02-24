@@ -6,6 +6,7 @@ namespace Planes
 {
     public class Grid
     {
+        //variables to define grid containing 3 planes
         protected Plane[] planearray = new Plane[3];
         public int[,] playgrid = new int[10, 10];
         protected int lastplane = 0;
@@ -27,6 +28,7 @@ namespace Planes
             }
         }
 
+        // clears grid of all planes
         public void ClearGrid()
         {
             for (int i = 0; i < 10; i++)
@@ -43,7 +45,7 @@ namespace Planes
             lastplane = 0;
         }
 
-        //make method to create a grid
+        // make method to create a grid containing planes
         public void CreateGrid()
         {
             for (int i = 0; i < 10; i++)
@@ -150,12 +152,13 @@ namespace Planes
             }
         }
 
+        // gets contents of sqaure in grid
         public int GetSquare(int r, int c)
         {
             return playgrid[r, c];
         }
 
-
+        // removes the last added plane from grid
         public void RemovePlane()
         {
             if (lastplane != 0)
@@ -220,6 +223,7 @@ namespace Planes
             }
         }
 
+        // adds plane to grid while theres space
         public void AddPlane(int r, int c, int orientation)
         {
             if(lastplane < 3)

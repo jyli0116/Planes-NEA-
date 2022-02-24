@@ -242,7 +242,7 @@ namespace Planes
 
 
                         }*/
-                        MessageBox.Show(Convert.ToString(playerturn) + Convert.ToString(p1headno) + Convert.ToString(p2headno) + Convert.ToString(nousers) + Convert.ToString(difficulty));
+                        
 
 
                         if (!MainForm.Instance.pagecontainer.Controls.ContainsKey("gamepageUC"))

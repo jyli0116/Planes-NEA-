@@ -65,7 +65,8 @@ namespace Planes
                     p1headno = savedscreen.p1headno;
                     p2headno = savedscreen.p2headno;
                     playerturn = savedscreen.playerturn;
-                    
+                    filename = savedscreen.filename;
+                    savedscreen.saved = false;
 
                 }
 
@@ -100,8 +101,6 @@ namespace Planes
 
             CreateGrids(rows, cols, tileWidth, tileHeight, gridTop, gridLeft);
             GridColour();
-
-
         }
 
         // used for computer to make a move
@@ -718,6 +717,7 @@ namespace Planes
         {
             if (win == true || saved == true)
             {
+                saved = false;
                 for (int i = 0; i < 10; i++)
                 {
                     for (int j = 0; j < 10; j++)
@@ -726,6 +726,7 @@ namespace Planes
                         p1planegrid.playgrid[i, j] = 0;
                     }
                 }
+                
                 /*if (nousers == 2)
                 {
 
@@ -744,12 +745,17 @@ namespace Planes
                     MainForm.Instance.pagecontainer.Controls.Add(returnhome);
                 }
                 MainForm.Instance.pagecontainer.Controls["HomeUC"].BringToFront();
-                MainForm.Instance.pagecontainer.Controls.RemoveByKey("gamepageUC");
+                
                 MainForm.Instance.pagecontainer.Controls.RemoveByKey("setP2UC");
                 if (!MainForm.Instance.pagecontainer.Controls.ContainsKey("setP1UC"))
                 {
                     MainForm.Instance.pagecontainer.Controls.RemoveByKey("setP1UC");
                 }
+                if (!MainForm.Instance.pagecontainer.Controls.ContainsKey("SavedUC"))
+                {
+                    MainForm.Instance.pagecontainer.Controls.RemoveByKey("SavedUC");
+                }
+                MainForm.Instance.pagecontainer.Controls.RemoveByKey("gamepageUC");
 
             }
             else

@@ -187,61 +187,6 @@ namespace Planes
                             difficulty = Convert.ToInt32(reader.ReadLine());
 
                         }
-
-
-                        /*for (int i = 0; i < 405; i++)
-                        {
-                            int line = Convert.ToInt32(sr.ReadLine());
-                            
-                            if (i <= 99)
-                            {
-                                c = i % 10;
-                                r = i / 10;                                
-                                p1planegrid.playgrid[r, c] = line;
-                            }
-                            else if (i <= 199 && i >= 100)
-                            {
-                                c = (i - 100) % 10;
-                                r = (i - 100) / 10;                               
-                                p2planegrid.playgrid[r, c] = line;
-                            }
-                            else if (i <= 299 && i >= 200)
-                            {
-                                c = (i - 200) % 10;
-                                r = (i - 200) / 10;
-                                
-                                p1refgrid[r, c] = line;
-                            }
-                            else if (i <= 399 && i >= 300)
-                            {
-                                c = (i - 300) % 10;
-                                r = (i - 300) / 10;
-                                
-                                p2refgrid[r, c] = line;
-                            }
-                            else if (i == 400)
-                            {
-                                playerturn = line;
-                            }
-                            else if (i == 401)
-                            {
-                                p1headno = line;
-                            }
-                            else if (i == 402)
-                            {
-                                p2headno = line;
-                            }
-                            else if (i == 403)
-                            {
-                                nousers = line;
-                            }
-                            else if (i == 404)
-                            {
-                                difficulty = line;
-                            }
-
-
-                        }*/
                         
 
 

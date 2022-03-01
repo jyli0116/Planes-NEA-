@@ -36,6 +36,8 @@ namespace Planes
             this.slotthreebtn = new System.Windows.Forms.Button();
             this.slotfourbtn = new System.Windows.Forms.Button();
             this.slotfivebtn = new System.Windows.Forms.Button();
+            this.deletebtn = new System.Windows.Forms.Button();
+            this.openbtn = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // savedgameslbl
@@ -108,10 +110,32 @@ namespace Planes
             this.slotfivebtn.UseVisualStyleBackColor = true;
             this.slotfivebtn.Click += new System.EventHandler(this.button5_Click);
             // 
+            // deletebtn
+            // 
+            this.deletebtn.Location = new System.Drawing.Point(756, 503);
+            this.deletebtn.Name = "deletebtn";
+            this.deletebtn.Size = new System.Drawing.Size(99, 36);
+            this.deletebtn.TabIndex = 10;
+            this.deletebtn.Text = "Delete Game";
+            this.deletebtn.UseVisualStyleBackColor = true;
+            this.deletebtn.Click += new System.EventHandler(this.deletebtn_Click);
+            // 
+            // openbtn
+            // 
+            this.openbtn.Location = new System.Drawing.Point(756, 461);
+            this.openbtn.Name = "openbtn";
+            this.openbtn.Size = new System.Drawing.Size(99, 36);
+            this.openbtn.TabIndex = 11;
+            this.openbtn.Text = "Open Game";
+            this.openbtn.UseVisualStyleBackColor = true;
+            this.openbtn.Click += new System.EventHandler(this.openbtn_Click);
+            // 
             // SavedUC
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.openbtn);
+            this.Controls.Add(this.deletebtn);
             this.Controls.Add(this.slotfivebtn);
             this.Controls.Add(this.slotfourbtn);
             this.Controls.Add(this.slotthreebtn);
@@ -135,5 +159,7 @@ namespace Planes
         private System.Windows.Forms.Button slotthreebtn;
         private System.Windows.Forms.Button slotfourbtn;
         private System.Windows.Forms.Button slotfivebtn;
+        private System.Windows.Forms.Button deletebtn;
+        private System.Windows.Forms.Button openbtn;
     }
 }

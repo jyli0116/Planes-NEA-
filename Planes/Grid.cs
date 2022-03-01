@@ -7,9 +7,9 @@ namespace Planes
     public class Grid
     {
         //variables to define grid containing 3 planes
-        protected Plane[] planearray = new Plane[3];
+        private Plane[] planearray = new Plane[3];
         public int[,] playgrid = new int[10, 10];
-        protected int lastplane = 0;
+        private int lastplane = 0;
         Random rnd = new Random();
 
         public Grid()

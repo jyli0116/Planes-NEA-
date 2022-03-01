@@ -57,4 +57,11 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="label1.Text" xml:space="preserve">
+    <value>Three planes are placed on a 10 x 10 grid. The goal of the game is to find all three plane heads on the grid before the other player does. Each player will take turns playing a move on their grid to find the plane heads.
+
+Each square on the grid can contain one of three objects: a red square represents a plane head, a blue square represents a plane part, whilst a blank square represents a miss/empty square. 
+
+The first player to find all three planes on the grid wins</value>
+  </data>
 </root>

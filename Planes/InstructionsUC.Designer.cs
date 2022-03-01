@@ -28,9 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(InstructionsUC));
             this.howtoplaylbl = new System.Windows.Forms.Label();
-            this.instructionslbl = new System.Windows.Forms.Label();
             this.instructionbackbtn = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // howtoplaylbl
@@ -43,14 +44,6 @@
             this.howtoplaylbl.TabIndex = 0;
             this.howtoplaylbl.Text = "How To Play";
             // 
-            // instructionslbl
-            // 
-            this.instructionslbl.Location = new System.Drawing.Point(201, 289);
-            this.instructionslbl.Name = "instructionslbl";
-            this.instructionslbl.Size = new System.Drawing.Size(479, 216);
-            this.instructionslbl.TabIndex = 1;
-            this.instructionslbl.Text = "here are some instructions";
-            // 
             // instructionbackbtn
             // 
             this.instructionbackbtn.Location = new System.Drawing.Point(19, 19);
@@ -61,12 +54,20 @@
             this.instructionbackbtn.UseVisualStyleBackColor = true;
             this.instructionbackbtn.Click += new System.EventHandler(this.instructionbackbtn_Click);
             // 
+            // label1
+            // 
+            this.label1.Location = new System.Drawing.Point(237, 296);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(404, 150);
+            this.label1.TabIndex = 4;
+            this.label1.Text = resources.GetString("label1.Text");
+            // 
             // InstructionsUC
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.instructionbackbtn);
-            this.Controls.Add(this.instructionslbl);
             this.Controls.Add(this.howtoplaylbl);
             this.Name = "InstructionsUC";
             this.Size = new System.Drawing.Size(901, 558);
@@ -78,7 +79,7 @@
         #endregion
 
         private System.Windows.Forms.Label howtoplaylbl;
-        private System.Windows.Forms.Label instructionslbl;
         private System.Windows.Forms.Button instructionbackbtn;
+        private System.Windows.Forms.Label label1;
     }
 }

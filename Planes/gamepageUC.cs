@@ -101,6 +101,8 @@ namespace Planes
 
             CreateGrids(rows, cols, tileWidth, tileHeight, gridTop, gridLeft);
             GridColour();
+            //Form displayform = new DisplayForm();
+            //displayform.Show();
         }
 
         // used for computer to make a move
@@ -229,7 +231,7 @@ namespace Planes
         // not particularly sophisticated Monte Carlo Sim.
         private void MediumMove()
         {
-            int r = 0, c = 0, add = 0;
+            int r = 0, c = 0;
             for (int i = 0; i < 10; i++)
             {
                 for (int j = 0; j < 10; j++)
@@ -240,48 +242,15 @@ namespace Planes
 
             int loopno = 0;
 
-            while (loopno < 10000)
+            while (loopno < 100)
             {
-                add = 0;
                 loopno ++;
                 simgrid.CreateGrid();
                 for (int i = 0; i < 10; i++)
                 {
                     for (int j = 0; j < 10; j++)
                     {
-                        if (p1refgrid[i, j] == 0)
-                        {
-                            computergrid[i, j] = simgrid.playgrid[i, j];                         
-                        }
-                        else if (p1refgrid[i, j] == 1)
-                        {
-                            if (simgrid.playgrid[i, j] == 1)
-                            {
-                                add += 2;
-                            }
-                        }
-                        else if (p1refgrid[i, j] == 2)
-                        {
-                            if (simgrid.playgrid[i, j] == 2)
-                            {
-                                add += 5;
-                            }
-                        }
-                        else if (p1refgrid[i, j] == -1)
-                        {
-                            add++;
-                        }
-                    }
-                }
-
-                for (int i = 0; i < 10; i++)
-                {
-                    for (int j = 0; j < 10; j++)
-                    {
-                        if (computergrid[i, j] != 0)
-                        {
-                            computergrid[i, j] += add;
-                        }
+                        computergrid[i, j] = computergrid[i, j] + simgrid.playgrid[i, j];
                     }
                 }
 
@@ -292,7 +261,7 @@ namespace Planes
                 for (int j = 0; j < 10; j++)
                 {
 
-                    if (simgrid.playgrid[i, j] > simgrid.playgrid[r, c] && p1refgrid[i, j] == 0)
+                    if (computergrid[i, j] > computergrid[r, c] && p1refgrid[i, j] == 0)
                     {
                         r = i;
                         c = j;
@@ -829,7 +798,7 @@ namespace Planes
                     {
                         for (int j = 0; j < 10; j++)
                         {
-                            sw.WriteLine(p1refgrid[i, j]);
+                            sw.WriteLine(p2refgrid[i, j]);
                         }
                     }
                     sw.WriteLine(playerturn);

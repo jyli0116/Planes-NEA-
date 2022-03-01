@@ -102,41 +102,31 @@ namespace Planes
             {
                 slotfivebtn.Text = "Slot Five : Empty";
             }
-
-
-
-
-
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
             filename = "slotone.txt";
-            OpenGame();
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
             filename = "slottwo.txt";
-            OpenGame();
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
             filename = "slotthree.txt";
-            OpenGame();
         }
 
         private void button4_Click(object sender, EventArgs e)
         {
             filename = "slotfour.txt";
-            OpenGame();
         }
 
         private void button5_Click(object sender, EventArgs e)
         {
             filename = "slotfive.txt";
-            OpenGame();
         }
 
         private void OpenGame()
@@ -200,8 +190,6 @@ namespace Planes
                     }
                 }
             }
-
-
         }
 
         private void savedbackbtn_Click(object sender, EventArgs e)
@@ -214,6 +202,22 @@ namespace Planes
             }
             MainForm.Instance.pagecontainer.Controls["HomeUC"].BringToFront();
             MainForm.Instance.pagecontainer.Controls.RemoveByKey("SavedUC");
+        }
+
+        private void deletebtn_Click(object sender, EventArgs e)
+        {
+            if (!String.IsNullOrWhiteSpace(filename))
+            {
+                using (StreamWriter sw = new StreamWriter(filename, false))
+                {
+                    sw.WriteLine();
+                }
+            }
+        }
+
+        private void openbtn_Click(object sender, EventArgs e)
+        {
+            OpenGame();
         }
     }
 }
